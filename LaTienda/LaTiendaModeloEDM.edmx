@@ -1,0 +1,930 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LaTiendaModeloEDM.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="LaTiendaModeloEDMStoreContainer">
+    <EntitySet Name="ClienteSet" EntityType="LaTiendaModeloEDM.Store.ClienteSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ColorSet" EntityType="LaTiendaModeloEDM.Store.ColorSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ComprobanteSet" EntityType="LaTiendaModeloEDM.Store.ComprobanteSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LineaDeVentaSet" EntityType="LaTiendaModeloEDM.Store.LineaDeVentaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MarcaSet" EntityType="LaTiendaModeloEDM.Store.MarcaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductoSet" EntityType="LaTiendaModeloEDM.Store.ProductoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PuntoDeVentaSet" EntityType="LaTiendaModeloEDM.Store.PuntoDeVentaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RubroSet" EntityType="LaTiendaModeloEDM.Store.RubroSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StockSet" EntityType="LaTiendaModeloEDM.Store.StockSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SucursalSet" EntityType="LaTiendaModeloEDM.Store.SucursalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TalleSet" EntityType="LaTiendaModeloEDM.Store.TalleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsuarioSet" EntityType="LaTiendaModeloEDM.Store.UsuarioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VentaSet" EntityType="LaTiendaModeloEDM.Store.VentaSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ClienteVenta" Association="LaTiendaModeloEDM.Store.FK_ClienteVenta">
+      <End Role="ClienteSet" EntitySet="ClienteSet" />
+      <End Role="VentaSet" EntitySet="VentaSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ColorStock" Association="LaTiendaModeloEDM.Store.FK_ColorStock">
+      <End Role="ColorSet" EntitySet="ColorSet" />
+      <End Role="StockSet" EntitySet="StockSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockSetLineaDeVenta" Association="LaTiendaModeloEDM.Store.FK_StockSetLineaDeVenta">
+      <End Role="StockSet" EntitySet="StockSet" />
+      <End Role="LineaDeVentaSet" EntitySet="LineaDeVentaSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VentaLineaDeVenta" Association="LaTiendaModeloEDM.Store.FK_VentaLineaDeVenta">
+      <End Role="VentaSet" EntitySet="VentaSet" />
+      <End Role="LineaDeVentaSet" EntitySet="LineaDeVentaSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarcaProducto" Association="LaTiendaModeloEDM.Store.FK_MarcaProducto">
+      <End Role="MarcaSet" EntitySet="MarcaSet" />
+      <End Role="ProductoSet" EntitySet="ProductoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductoStock" Association="LaTiendaModeloEDM.Store.FK_ProductoStock">
+      <End Role="ProductoSet" EntitySet="ProductoSet" />
+      <End Role="StockSet" EntitySet="StockSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RubroProducto" Association="LaTiendaModeloEDM.Store.FK_RubroProducto">
+      <End Role="RubroSet" EntitySet="RubroSet" />
+      <End Role="ProductoSet" EntitySet="ProductoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SucursalPuntoDeVenta" Association="LaTiendaModeloEDM.Store.FK_SucursalPuntoDeVenta">
+      <End Role="SucursalSet" EntitySet="SucursalSet" />
+      <End Role="PuntoDeVentaSet" EntitySet="PuntoDeVentaSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SucursalStockSet" Association="LaTiendaModeloEDM.Store.FK_SucursalStockSet">
+      <End Role="SucursalSet" EntitySet="SucursalSet" />
+      <End Role="StockSet" EntitySet="StockSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TalleStock" Association="LaTiendaModeloEDM.Store.FK_TalleStock">
+      <End Role="TalleSet" EntitySet="TalleSet" />
+      <End Role="StockSet" EntitySet="StockSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SucursalUsuario" Association="LaTiendaModeloEDM.Store.FK_SucursalUsuario">
+      <End Role="SucursalSet" EntitySet="SucursalSet" />
+      <End Role="UsuarioSet" EntitySet="UsuarioSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioVenta" Association="LaTiendaModeloEDM.Store.FK_UsuarioVenta">
+      <End Role="UsuarioSet" EntitySet="UsuarioSet" />
+      <End Role="VentaSet" EntitySet="VentaSet" />
+    </AssociationSet>
+    <AssociationSet Name="VentaSetComprobanteSet" Association="LaTiendaModeloEDM.Store.VentaSetComprobanteSet">
+      <End Role="VentaSet" EntitySet="VentaSet" />
+      <End Role="ComprobanteSet" EntitySet="ComprobanteSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ClienteSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Documento" Type="bigint" Nullable="false" />
+    <Property Name="Domicilio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CondicionTributaria" Type="int" Nullable="false" />
+    <Property Name="TipoDocumento" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ColorSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="bigint" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ComprobanteSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CAE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="FechaVen" Type="datetime" Nullable="false" />
+    <Property Name="Concepto" Type="int" Nullable="false" />
+    <Property Name="TipoComprobante" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LineaDeVentaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cantidad" Type="bigint" Nullable="false" />
+    <Property Name="PrecioDeVenta" Type="float" Nullable="false" />
+    <Property Name="StockSet_Id" Type="int" Nullable="false" />
+    <Property Name="Venta_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MarcaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="bigint" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="bigint" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Costo" Type="float" Nullable="false" />
+    <Property Name="MargenDeGanancia" Type="bigint" Nullable="false" />
+    <Property Name="Iva" Type="float" Nullable="false" />
+    <Property Name="NetoGravado" Type="float" Nullable="false" />
+    <Property Name="PorcentajeIva" Type="bigint" Nullable="false" />
+    <Property Name="PrecioDeVenta" Type="float" Nullable="false" />
+    <Property Name="Rubro_Id" Type="int" Nullable="false" />
+    <Property Name="Marca_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PuntoDeVentaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="int" Nullable="false" />
+    <Property Name="Sucursal_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RubroSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="bigint" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StockSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cantidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Color_Id" Type="int" Nullable="false" />
+    <Property Name="Talle_Id" Type="int" Nullable="false" />
+    <Property Name="Producto_Id" Type="int" Nullable="false" />
+    <Property Name="SucursalId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SucursalSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Sign" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cuit" Type="bigint" Nullable="false" />
+    <Property Name="TipoDocumento" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TalleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="bigint" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsuarioSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Legajo" Type="bigint" Nullable="false" />
+    <Property Name="UsuarioNick" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RolUsuario1" Type="int" Nullable="false" />
+    <Property Name="Sucursal_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VentaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Total" Type="float" Nullable="false" />
+    <Property Name="Comprobante_Id" Type="int" Nullable="false" />
+    <Property Name="Cliente_Id" Type="int" Nullable="false" />
+    <Property Name="Usuario_Id" Type="int" Nullable="false" />
+    <Property Name="ComprobanteSet_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ClienteVenta">
+    <End Role="ClienteSet" Type="LaTiendaModeloEDM.Store.ClienteSet" Multiplicity="1" />
+    <End Role="VentaSet" Type="LaTiendaModeloEDM.Store.VentaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClienteSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VentaSet">
+        <PropertyRef Name="Cliente_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ColorStock">
+    <End Role="ColorSet" Type="LaTiendaModeloEDM.Store.ColorSet" Multiplicity="1" />
+    <End Role="StockSet" Type="LaTiendaModeloEDM.Store.StockSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ColorSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockSet">
+        <PropertyRef Name="Color_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockSetLineaDeVenta">
+    <End Role="StockSet" Type="LaTiendaModeloEDM.Store.StockSet" Multiplicity="1" />
+    <End Role="LineaDeVentaSet" Type="LaTiendaModeloEDM.Store.LineaDeVentaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LineaDeVentaSet">
+        <PropertyRef Name="StockSet_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VentaLineaDeVenta">
+    <End Role="VentaSet" Type="LaTiendaModeloEDM.Store.VentaSet" Multiplicity="1" />
+    <End Role="LineaDeVentaSet" Type="LaTiendaModeloEDM.Store.LineaDeVentaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VentaSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LineaDeVentaSet">
+        <PropertyRef Name="Venta_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarcaProducto">
+    <End Role="MarcaSet" Type="LaTiendaModeloEDM.Store.MarcaSet" Multiplicity="1" />
+    <End Role="ProductoSet" Type="LaTiendaModeloEDM.Store.ProductoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MarcaSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductoSet">
+        <PropertyRef Name="Marca_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductoStock">
+    <End Role="ProductoSet" Type="LaTiendaModeloEDM.Store.ProductoSet" Multiplicity="1" />
+    <End Role="StockSet" Type="LaTiendaModeloEDM.Store.StockSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductoSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockSet">
+        <PropertyRef Name="Producto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RubroProducto">
+    <End Role="RubroSet" Type="LaTiendaModeloEDM.Store.RubroSet" Multiplicity="1" />
+    <End Role="ProductoSet" Type="LaTiendaModeloEDM.Store.ProductoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RubroSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductoSet">
+        <PropertyRef Name="Rubro_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SucursalPuntoDeVenta">
+    <End Role="SucursalSet" Type="LaTiendaModeloEDM.Store.SucursalSet" Multiplicity="1" />
+    <End Role="PuntoDeVentaSet" Type="LaTiendaModeloEDM.Store.PuntoDeVentaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SucursalSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PuntoDeVentaSet">
+        <PropertyRef Name="Sucursal_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SucursalStockSet">
+    <End Role="SucursalSet" Type="LaTiendaModeloEDM.Store.SucursalSet" Multiplicity="1" />
+    <End Role="StockSet" Type="LaTiendaModeloEDM.Store.StockSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SucursalSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockSet">
+        <PropertyRef Name="SucursalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TalleStock">
+    <End Role="TalleSet" Type="LaTiendaModeloEDM.Store.TalleSet" Multiplicity="1" />
+    <End Role="StockSet" Type="LaTiendaModeloEDM.Store.StockSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TalleSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockSet">
+        <PropertyRef Name="Talle_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SucursalUsuario">
+    <End Role="SucursalSet" Type="LaTiendaModeloEDM.Store.SucursalSet" Multiplicity="1" />
+    <End Role="UsuarioSet" Type="LaTiendaModeloEDM.Store.UsuarioSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SucursalSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioSet">
+        <PropertyRef Name="Sucursal_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioVenta">
+    <End Role="UsuarioSet" Type="LaTiendaModeloEDM.Store.UsuarioSet" Multiplicity="1" />
+    <End Role="VentaSet" Type="LaTiendaModeloEDM.Store.VentaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UsuarioSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VentaSet">
+        <PropertyRef Name="Usuario_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VentaSetComprobanteSet">
+    <End Role="VentaSet" Type="LaTiendaModeloEDM.Store.VentaSet" Multiplicity="*" />
+    <End Role="ComprobanteSet" Type="LaTiendaModeloEDM.Store.ComprobanteSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ComprobanteSet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VentaSet">
+        <PropertyRef Name="ComprobanteSet_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LaTiendaModeloEDM" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ClienteSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Documento" Type="Int64" Nullable="false" />
+          <Property Name="Domicilio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CondicionTributaria" Type="LaTiendaModeloEDM.CondicionTributaria" Nullable="false" />
+          <Property Name="TipoDocumento" Type="LaTiendaModeloEDM.TipoDocumento" Nullable="false" />
+          <NavigationProperty Name="VentaSet" Relationship="Self.FK_ClienteVenta" FromRole="ClienteSet" ToRole="VentaSet" />
+        </EntityType>
+        <EntityType Name="ColorSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int64" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="StockSet" Relationship="Self.FK_ColorStock" FromRole="ColorSet" ToRole="StockSet" />
+        </EntityType>
+        <EntityType Name="ComprobanteSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CAE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaVen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Concepto" Type="LaTiendaModeloEDM.TipoComprobante" Nullable="false" />
+          <Property Name="TipoComprobante" Type="LaTiendaModeloEDM.TipoComprobante" Nullable="false" />
+          <NavigationProperty Name="VentaSet" Relationship="LaTiendaModeloEDM.VentaSetComprobanteSet" FromRole="ComprobanteSet" ToRole="VentaSet" />
+        </EntityType>
+        <EntityType Name="LineaDeVentaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="Int64" Nullable="false" />
+          <Property Name="PrecioDeVenta" Type="Double" Nullable="false" />
+          <Property Name="StockSet_Id" Type="Int32" Nullable="false" />
+          <Property Name="Venta_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="StockSet" Relationship="Self.FK_StockSetLineaDeVenta" FromRole="LineaDeVentaSet" ToRole="StockSet" />
+          <NavigationProperty Name="VentaSet" Relationship="Self.FK_VentaLineaDeVenta" FromRole="LineaDeVentaSet" ToRole="VentaSet" />
+        </EntityType>
+        <EntityType Name="MarcaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int64" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductoSet" Relationship="Self.FK_MarcaProducto" FromRole="MarcaSet" ToRole="ProductoSet" />
+        </EntityType>
+        <EntityType Name="ProductoSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int64" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Costo" Type="Double" Nullable="false" />
+          <Property Name="MargenDeGanancia" Type="Int64" Nullable="false" />
+          <Property Name="Iva" Type="Double" Nullable="false" />
+          <Property Name="NetoGravado" Type="Double" Nullable="false" />
+          <Property Name="PorcentajeIva" Type="Int64" Nullable="false" />
+          <Property Name="PrecioDeVenta" Type="Double" Nullable="false" />
+          <Property Name="Rubro_Id" Type="Int32" Nullable="false" />
+          <Property Name="Marca_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MarcaSet" Relationship="Self.FK_MarcaProducto" FromRole="ProductoSet" ToRole="MarcaSet" />
+          <NavigationProperty Name="StockSet" Relationship="Self.FK_ProductoStock" FromRole="ProductoSet" ToRole="StockSet" />
+          <NavigationProperty Name="RubroSet" Relationship="Self.FK_RubroProducto" FromRole="ProductoSet" ToRole="RubroSet" />
+        </EntityType>
+        <EntityType Name="PuntoDeVentaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Sucursal_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SucursalSet" Relationship="Self.FK_SucursalPuntoDeVenta" FromRole="PuntoDeVentaSet" ToRole="SucursalSet" />
+        </EntityType>
+        <EntityType Name="RubroSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int64" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductoSet" Relationship="Self.FK_RubroProducto" FromRole="RubroSet" ToRole="ProductoSet" />
+        </EntityType>
+        <EntityType Name="StockSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Color_Id" Type="Int32" Nullable="false" />
+          <Property Name="Talle_Id" Type="Int32" Nullable="false" />
+          <Property Name="Producto_Id" Type="Int32" Nullable="false" />
+          <Property Name="SucursalId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ColorSet" Relationship="Self.FK_ColorStock" FromRole="StockSet" ToRole="ColorSet" />
+          <NavigationProperty Name="LineaDeVentaSet" Relationship="Self.FK_StockSetLineaDeVenta" FromRole="StockSet" ToRole="LineaDeVentaSet" />
+          <NavigationProperty Name="ProductoSet" Relationship="Self.FK_ProductoStock" FromRole="StockSet" ToRole="ProductoSet" />
+          <NavigationProperty Name="SucursalSet" Relationship="Self.FK_SucursalStockSet" FromRole="StockSet" ToRole="SucursalSet" />
+          <NavigationProperty Name="TalleSet" Relationship="Self.FK_TalleStock" FromRole="StockSet" ToRole="TalleSet" />
+        </EntityType>
+        <EntityType Name="SucursalSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sign" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cuit" Type="Int64" Nullable="false" />
+          <Property Name="TipoDocumento" Type="LaTiendaModeloEDM.TipoDocumento" Nullable="false" />
+          <NavigationProperty Name="PuntoDeVentaSet" Relationship="Self.FK_SucursalPuntoDeVenta" FromRole="SucursalSet" ToRole="PuntoDeVentaSet" />
+          <NavigationProperty Name="StockSet" Relationship="Self.FK_SucursalStockSet" FromRole="SucursalSet" ToRole="StockSet" />
+          <NavigationProperty Name="UsuarioSet" Relationship="Self.FK_SucursalUsuario" FromRole="SucursalSet" ToRole="UsuarioSet" />
+        </EntityType>
+        <EntityType Name="TalleSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int64" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="StockSet" Relationship="Self.FK_TalleStock" FromRole="TalleSet" ToRole="StockSet" />
+        </EntityType>
+        <EntityType Name="UsuarioSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Legajo" Type="Int64" Nullable="false" />
+          <Property Name="UsuarioNick" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RolUsuario1" Type="LaTiendaModeloEDM.RolEnum" Nullable="false" />
+          <Property Name="Sucursal_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SucursalSet" Relationship="Self.FK_SucursalUsuario" FromRole="UsuarioSet" ToRole="SucursalSet" />
+          <NavigationProperty Name="VentaSet" Relationship="Self.FK_UsuarioVenta" FromRole="UsuarioSet" ToRole="VentaSet" />
+        </EntityType>
+        <EntityType Name="VentaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="Comprobante_Id" Type="Int32" Nullable="false" />
+          <Property Name="Cliente_Id" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ClienteSet" Relationship="Self.FK_ClienteVenta" FromRole="VentaSet" ToRole="ClienteSet" />
+          <NavigationProperty Name="LineaDeVentaSet" Relationship="Self.FK_VentaLineaDeVenta" FromRole="VentaSet" ToRole="LineaDeVentaSet" />
+          <NavigationProperty Name="UsuarioSet" Relationship="Self.FK_UsuarioVenta" FromRole="VentaSet" ToRole="UsuarioSet" />
+          <NavigationProperty Name="ComprobanteSet" Relationship="LaTiendaModeloEDM.VentaSetComprobanteSet" FromRole="VentaSet" ToRole="ComprobanteSet" />
+        </EntityType>
+        <Association Name="FK_ClienteVenta">
+          <End Role="ClienteSet" Type="Self.ClienteSet" Multiplicity="1" />
+          <End Role="VentaSet" Type="Self.VentaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClienteSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VentaSet">
+              <PropertyRef Name="Cliente_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColorStock">
+          <End Role="ColorSet" Type="Self.ColorSet" Multiplicity="1" />
+          <End Role="StockSet" Type="Self.StockSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockSet">
+              <PropertyRef Name="Color_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockSetLineaDeVenta">
+          <End Role="StockSet" Type="Self.StockSet" Multiplicity="1" />
+          <End Role="LineaDeVentaSet" Type="Self.LineaDeVentaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LineaDeVentaSet">
+              <PropertyRef Name="StockSet_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentaLineaDeVenta">
+          <End Role="VentaSet" Type="Self.VentaSet" Multiplicity="1" />
+          <End Role="LineaDeVentaSet" Type="Self.LineaDeVentaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VentaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LineaDeVentaSet">
+              <PropertyRef Name="Venta_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarcaProducto">
+          <End Role="MarcaSet" Type="Self.MarcaSet" Multiplicity="1" />
+          <End Role="ProductoSet" Type="Self.ProductoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarcaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductoSet">
+              <PropertyRef Name="Marca_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductoStock">
+          <End Role="ProductoSet" Type="Self.ProductoSet" Multiplicity="1" />
+          <End Role="StockSet" Type="Self.StockSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductoSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockSet">
+              <PropertyRef Name="Producto_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RubroProducto">
+          <End Role="RubroSet" Type="Self.RubroSet" Multiplicity="1" />
+          <End Role="ProductoSet" Type="Self.ProductoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RubroSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductoSet">
+              <PropertyRef Name="Rubro_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SucursalPuntoDeVenta">
+          <End Role="SucursalSet" Type="Self.SucursalSet" Multiplicity="1" />
+          <End Role="PuntoDeVentaSet" Type="Self.PuntoDeVentaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SucursalSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PuntoDeVentaSet">
+              <PropertyRef Name="Sucursal_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SucursalStockSet">
+          <End Role="SucursalSet" Type="Self.SucursalSet" Multiplicity="1" />
+          <End Role="StockSet" Type="Self.StockSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SucursalSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockSet">
+              <PropertyRef Name="SucursalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TalleStock">
+          <End Role="TalleSet" Type="Self.TalleSet" Multiplicity="1" />
+          <End Role="StockSet" Type="Self.StockSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TalleSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockSet">
+              <PropertyRef Name="Talle_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SucursalUsuario">
+          <End Role="SucursalSet" Type="Self.SucursalSet" Multiplicity="1" />
+          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SucursalSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioSet">
+              <PropertyRef Name="Sucursal_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioVenta">
+          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="1" />
+          <End Role="VentaSet" Type="Self.VentaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VentaSet">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LaTiendaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClienteSet" EntityType="Self.ClienteSet" />
+          <EntitySet Name="ColorSet" EntityType="Self.ColorSet" />
+          <EntitySet Name="ComprobanteSet" EntityType="Self.ComprobanteSet" />
+          <EntitySet Name="LineaDeVentaSet" EntityType="Self.LineaDeVentaSet" />
+          <EntitySet Name="MarcaSet" EntityType="Self.MarcaSet" />
+          <EntitySet Name="ProductoSet" EntityType="Self.ProductoSet" />
+          <EntitySet Name="PuntoDeVentaSet" EntityType="Self.PuntoDeVentaSet" />
+          <EntitySet Name="RubroSet" EntityType="Self.RubroSet" />
+          <EntitySet Name="StockSet" EntityType="Self.StockSet" />
+          <EntitySet Name="SucursalSet" EntityType="Self.SucursalSet" />
+          <EntitySet Name="TalleSet" EntityType="Self.TalleSet" />
+          <EntitySet Name="UsuarioSet" EntityType="Self.UsuarioSet" />
+          <EntitySet Name="VentaSet" EntityType="Self.VentaSet" />
+          <AssociationSet Name="FK_ClienteVenta" Association="Self.FK_ClienteVenta">
+            <End Role="ClienteSet" EntitySet="ClienteSet" />
+            <End Role="VentaSet" EntitySet="VentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColorStock" Association="Self.FK_ColorStock">
+            <End Role="ColorSet" EntitySet="ColorSet" />
+            <End Role="StockSet" EntitySet="StockSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockSetLineaDeVenta" Association="Self.FK_StockSetLineaDeVenta">
+            <End Role="StockSet" EntitySet="StockSet" />
+            <End Role="LineaDeVentaSet" EntitySet="LineaDeVentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentaLineaDeVenta" Association="Self.FK_VentaLineaDeVenta">
+            <End Role="VentaSet" EntitySet="VentaSet" />
+            <End Role="LineaDeVentaSet" EntitySet="LineaDeVentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarcaProducto" Association="Self.FK_MarcaProducto">
+            <End Role="MarcaSet" EntitySet="MarcaSet" />
+            <End Role="ProductoSet" EntitySet="ProductoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductoStock" Association="Self.FK_ProductoStock">
+            <End Role="ProductoSet" EntitySet="ProductoSet" />
+            <End Role="StockSet" EntitySet="StockSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RubroProducto" Association="Self.FK_RubroProducto">
+            <End Role="RubroSet" EntitySet="RubroSet" />
+            <End Role="ProductoSet" EntitySet="ProductoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SucursalPuntoDeVenta" Association="Self.FK_SucursalPuntoDeVenta">
+            <End Role="SucursalSet" EntitySet="SucursalSet" />
+            <End Role="PuntoDeVentaSet" EntitySet="PuntoDeVentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SucursalStockSet" Association="Self.FK_SucursalStockSet">
+            <End Role="SucursalSet" EntitySet="SucursalSet" />
+            <End Role="StockSet" EntitySet="StockSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TalleStock" Association="Self.FK_TalleStock">
+            <End Role="TalleSet" EntitySet="TalleSet" />
+            <End Role="StockSet" EntitySet="StockSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SucursalUsuario" Association="Self.FK_SucursalUsuario">
+            <End Role="SucursalSet" EntitySet="SucursalSet" />
+            <End Role="UsuarioSet" EntitySet="UsuarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioVenta" Association="Self.FK_UsuarioVenta">
+            <End Role="UsuarioSet" EntitySet="UsuarioSet" />
+            <End Role="VentaSet" EntitySet="VentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="VentaSetComprobanteSet" Association="LaTiendaModeloEDM.VentaSetComprobanteSet">
+            <End Role="VentaSet" EntitySet="VentaSet" />
+            <End Role="ComprobanteSet" EntitySet="ComprobanteSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EnumType Name="RolEnum" a:ExternalTypeName="LaTienda.Enums.RolEnum" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="Concepto" a:ExternalTypeName="LaTienda.Enums.Concepto" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="CondicionTributaria" a:ExternalTypeName="LaTienda.Enums.CondicionTributaria" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="TipoDocumento" a:ExternalTypeName="LaTienda.Enums.TipoDocumento" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="TipoComprobante" a:ExternalTypeName="LaTienda.Enums.TipoComprobante" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <Association Name="VentaSetComprobanteSet">
+          <End Type="LaTiendaModeloEDM.VentaSet" Role="VentaSet" Multiplicity="1" />
+          <End Type="LaTiendaModeloEDM.ComprobanteSet" Role="ComprobanteSet" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LaTiendaModeloEDMStoreContainer" CdmEntityContainer="LaTiendaEntities">
+    <EntitySetMapping Name="ClienteSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.ClienteSet)">
+        <MappingFragment StoreEntitySet="ClienteSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Documento" ColumnName="Documento" />
+          <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
+          <ScalarProperty Name="CondicionTributaria" ColumnName="CondicionTributaria" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ColorSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.ColorSet)">
+        <MappingFragment StoreEntitySet="ColorSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ComprobanteSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.ComprobanteSet)">
+        <MappingFragment StoreEntitySet="ComprobanteSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CAE" ColumnName="CAE" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="FechaVen" ColumnName="FechaVen" />
+          <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+          <ScalarProperty Name="TipoComprobante" ColumnName="TipoComprobante" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LineaDeVentaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.LineaDeVentaSet)">
+        <MappingFragment StoreEntitySet="LineaDeVentaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="PrecioDeVenta" ColumnName="PrecioDeVenta" />
+          <ScalarProperty Name="StockSet_Id" ColumnName="StockSet_Id" />
+          <ScalarProperty Name="Venta_Id" ColumnName="Venta_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MarcaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.MarcaSet)">
+        <MappingFragment StoreEntitySet="MarcaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.ProductoSet)">
+        <MappingFragment StoreEntitySet="ProductoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="MargenDeGanancia" ColumnName="MargenDeGanancia" />
+          <ScalarProperty Name="Iva" ColumnName="Iva" />
+          <ScalarProperty Name="NetoGravado" ColumnName="NetoGravado" />
+          <ScalarProperty Name="PorcentajeIva" ColumnName="PorcentajeIva" />
+          <ScalarProperty Name="PrecioDeVenta" ColumnName="PrecioDeVenta" />
+          <ScalarProperty Name="Rubro_Id" ColumnName="Rubro_Id" />
+          <ScalarProperty Name="Marca_Id" ColumnName="Marca_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PuntoDeVentaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.PuntoDeVentaSet)">
+        <MappingFragment StoreEntitySet="PuntoDeVentaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Sucursal_Id" ColumnName="Sucursal_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RubroSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.RubroSet)">
+        <MappingFragment StoreEntitySet="RubroSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.StockSet)">
+        <MappingFragment StoreEntitySet="StockSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Color_Id" ColumnName="Color_Id" />
+          <ScalarProperty Name="Talle_Id" ColumnName="Talle_Id" />
+          <ScalarProperty Name="Producto_Id" ColumnName="Producto_Id" />
+          <ScalarProperty Name="SucursalId" ColumnName="SucursalId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SucursalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.SucursalSet)">
+        <MappingFragment StoreEntitySet="SucursalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Sign" ColumnName="Sign" />
+          <ScalarProperty Name="Cuit" ColumnName="Cuit" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TalleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.TalleSet)">
+        <MappingFragment StoreEntitySet="TalleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.UsuarioSet)">
+        <MappingFragment StoreEntitySet="UsuarioSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Legajo" ColumnName="Legajo" />
+          <ScalarProperty Name="UsuarioNick" ColumnName="UsuarioNick" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RolUsuario1" ColumnName="RolUsuario1" />
+          <ScalarProperty Name="Sucursal_Id" ColumnName="Sucursal_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VentaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LaTiendaModeloEDM.VentaSet)">
+        <MappingFragment StoreEntitySet="VentaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Comprobante_Id" ColumnName="Comprobante_Id" />
+          <ScalarProperty Name="Cliente_Id" ColumnName="Cliente_Id" />
+          <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="VentaSetComprobanteSet" TypeName="LaTiendaModeloEDM.VentaSetComprobanteSet" StoreEntitySet="VentaSet">
+      <EndProperty Name="ComprobanteSet">
+        <ScalarProperty Name="Id" ColumnName="ComprobanteSet_Id" />
+      </EndProperty>
+      <EndProperty Name="VentaSet">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

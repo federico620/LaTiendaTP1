@@ -1,0 +1,98 @@
+﻿@model LaTienda.ProductoSet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductoSet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Costo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Costo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MargenDeGanancia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MargenDeGanancia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Iva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Iva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NetoGravado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NetoGravado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PorcentajeIva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PorcentajeIva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioDeVenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioDeVenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarcaSet.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarcaSet.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RubroSet.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RubroSet.Descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

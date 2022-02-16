@@ -1,0 +1,66 @@
+﻿@model LaTienda.UsuarioSet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UsuarioSet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Legajo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Legajo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioNick)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioNick)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RolUsuario1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RolUsuario1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SucursalSet.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SucursalSet.Descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

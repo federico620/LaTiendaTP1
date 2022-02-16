@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="74d1da0534f7490093cba75169298f19" Name="Diagram1" ZoomLevel="46">
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.ClienteSet" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.ColorSet" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.ComprobanteSet" Width="1.5" PointX="8" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.LineaDeVentaSet" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.MarcaSet" Width="1.5" PointX="1.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.ProductoSet" Width="1.5" PointX="3.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.PuntoDeVentaSet" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.RubroSet" Width="1.5" PointX="1.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.StockSet" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.SucursalSet" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.TalleSet" Width="1.5" PointX="3.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.UsuarioSet" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.VentaSet" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_ClienteVenta" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_ColorStock" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_StockSetLineaDeVenta" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_VentaLineaDeVenta" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_MarcaProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_ProductoStock" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_RubroProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_SucursalPuntoDeVenta" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_SucursalStockSet" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_TalleStock" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_SucursalUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.FK_UsuarioVenta" ManuallyRouted="false" />
+        <AssociationConnector Association="LaTiendaModeloEDM.VentaSetComprobanteSet" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

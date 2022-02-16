@@ -1,0 +1,56 @@
+﻿@model LaTienda.UsuarioSet
+
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Login La Tienda</legend>
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div style="border: 1px solid red">
+                @ViewBag.Message
+            </div>
+        }
+    <table>
+        <tr>
+            <td>@Html.LabelFor(model => model.UsuarioNick)</td>
+            <td>@Html.TextBoxFor(a => a.UsuarioNick)</td>
+            <td>@Html.ValidationMessageFor(a => a.UsuarioNick)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(a => a.Password)
+            </td>
+            <td>
+                @Html.PasswordFor(a => a.Password)
+            </td>
+            <td>
+                @Html.ValidationMessageFor(a => a.Password)
+            </td>
+        </tr>
+        <tr>
+            
+                @Html.LabelFor(model => model.PuntoDeVenta.Codigo, "Punto de Venta", htmlAttributes: new { @class = "control-label col-md-2" })
+                
+                    @Html.DropDownList("PuntoDeVenta_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.PuntoDeVenta.Codigo, "", new { @class = "text-danger" })
+                
+           
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Login" />
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    </fieldset>
+}
