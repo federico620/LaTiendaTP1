@@ -14,12 +14,13 @@
     <div>
         <div>
 
-            @using (Html.BeginForm("Index", "RealizarVenta", FormMethod.Get))
+            @using (Html.BeginForm("BuscarProducto", "RealizarVenta", FormMethod.Get))
             {
-            <p>
-                Código del Producto: @Html.TextBox("SearchString", searchString)
-                <input type="submit" value="Search" />
-            </p>
+                @Html.Hidden("venta_id", Model.Id)
+                <p>
+                    Código del Producto: @Html.TextBox("SearchString", searchString)
+                    <input type="submit" value="Buscar" />
+                </p>
             }
             <p>
                 @Html.Label("Descripcion")
@@ -29,11 +30,11 @@
                 <div>
                     <p>
                         @Html.Label("Marca")
-                        @Html.DisplayFor(model => model.ProductoViewModel.MarcaSet.Descripcion)
+                        @Html.DisplayFor(model => model.ProductoViewModel.MarcaViewModel.Descripcion)
                     </p>
                     <p>
                         @Html.Label("Rubro")
-                        @Html.DisplayFor(model => model.ProductoViewModel.RubroSet.Descripcion)
+                        @Html.DisplayFor(model => model.ProductoViewModel.RubroViewModel.Descripcion)
                     </p>
                 </div>
 
@@ -41,25 +42,92 @@
                 {
                     using (Html.BeginForm("BuscarStock", "RealizarVenta", FormMethod.Get))
                     {
-                @Html.Hidden("producto_id", Model.ProductoViewModel.Id)
-                <div>
-                    @Html.Label("Color")
-                    @Html.DropDownList("Color_Id", new SelectList(ViewBag.Color_Id, "Id", "Descripcion"), htmlAttributes: new { @class = "form-control" })
-                </div>
-                <div>
-                    @Html.Label("Talle")
-                    @Html.DropDownList("Talle_Id", new SelectList(ViewBag.Talle_Id, "Id", "Descripcion"), htmlAttributes: new { @class = "form-control" })
-                </div>
-                <div>
-                    <p>
-                        <input type="submit" value="Search" />
-                    </p>
-                </div>
+                        @Html.Hidden("venta_id", Model.Id)
+                        @Html.Hidden("producto_id", Model.ProductoViewModel.Id)
+                        <div>
+                            @Html.Label("Color")
+                            @Html.DropDownList("Color_Id", new SelectList(ViewBag.Color_Id, "Id", "Descripcion"), htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div>
+                            @Html.Label("Talle")
+                            @Html.DropDownList("Talle_Id", new SelectList(ViewBag.Talle_Id, "Id", "Descripcion"), htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div>
+                            <p>
+                                <input type="submit" value="Buscar" />
+                            </p>
+                        </div>
                     }
                 }
                 @Html.Label("Stock")
                 @Html.DisplayFor(model => model.StockViewModel.Cantidad)
+
+                <br><br>
+                @Html.Label("Precio")
+                @Html.DisplayFor(model => model.ProductoViewModel.PrecioDeVenta)
             </div>
+
+            @if (Model.StockViewModel != null)
+            {
+                using (Html.BeginForm("AgregarProducto", "RealizarVenta", FormMethod.Get))
+                {
+                    @Html.Hidden("venta_id", Model.Id)
+                    @Html.Hidden("producto_id", Model.ProductoViewModel.Id)
+                    @Html.Hidden("stock_id", Model.StockViewModel.Id)
+                    @Html.Label("Cantidad")
+                    <input id="cantidad" name="cantidad" type="number" min="1" max="@Model.StockViewModel.Cantidad" value="" />
+                    <input type="submit" value="Agregar" />
+                }
+            }
+
+            
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductoViewModel.Descripcion)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.LineaDeVentaViewModels.First().Cantidad)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.LineaDeVentaViewModels.First().PrecioDeVenta)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.StockViewModel.ColorViewModel.Descripcion)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.StockViewModel.TalleViewModel.Descripcion)
+                    </th>
+
+                </tr>
+
+                @foreach (var item in Model.LineaDeVentaViewModels)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StockViewModel.ProductoViewModel.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cantidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrecioDeVenta)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StockViewModel.ColorViewModel.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StockViewModel.TalleViewModel.Descripcion)
+                        </td>
+
+                    </tr>
+                }
+            </table>
+            
 
         </div>
 

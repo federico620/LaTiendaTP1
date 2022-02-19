@@ -18,7 +18,7 @@ namespace LaTienda
         public string CAE { get; set; }
         public System.DateTime Fecha { get; set; }
         public System.DateTime FechaVen { get; set; }
-        public LaTienda.Enums.TipoComprobante Concepto { get; set; }
+        public LaTienda.Enums.Concepto Concepto { get; set; }
         public LaTienda.Enums.TipoComprobante TipoComprobante { get; set; }
     
         public virtual VentaSet VentaSet { get; set; }

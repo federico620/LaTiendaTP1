@@ -15,7 +15,7 @@ namespace LaTienda
     public partial class LineaDeVentaSet
     {
         public int Id { get; set; }
-        public long Cantidad { get; set; }
+        public int Cantidad { get; set; }
         public double PrecioDeVenta { get; set; }
         public int StockSet_Id { get; set; }
         public int Venta_Id { get; set; }

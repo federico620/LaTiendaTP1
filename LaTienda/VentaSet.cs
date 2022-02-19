@@ -23,9 +23,9 @@ namespace LaTienda
         public int Id { get; set; }
         public System.DateTime Fecha { get; set; }
         public double Total { get; set; }
-        public int Comprobante_Id { get; set; }
-        public int Cliente_Id { get; set; }
-        public int Usuario_Id { get; set; }
+        public Nullable<int> Comprobante_Id { get; set; }
+        public Nullable<int> Cliente_Id { get; set; }
+        public Nullable<int> Usuario_Id { get; set; }
     
         public virtual ClienteSet ClienteSet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

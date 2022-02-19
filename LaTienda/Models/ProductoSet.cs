@@ -34,5 +34,12 @@ namespace LaTienda
         {
             PrecioDeVenta = NetoGravado + Iva;
         }
+
+        public void RealizarCalculos()
+        {
+            this.CalcularNetoGravado();
+            this.CalcularIva();
+            this.CalcularPrecioDeVenta();
+        }
     }
 }

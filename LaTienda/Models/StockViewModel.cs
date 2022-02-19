@@ -8,8 +8,13 @@ namespace LaTienda.Models
     public class StockViewModel
     {
         public int Id { get; set; }
-        //TODO: CAMBIAR A INT
-        public string Cantidad { get; set; }
+        public int Cantidad { get; set; }
+
+        public ColorViewModel ColorViewModel { get; set; }
+        public TalleViewModel TalleViewModel { get; set; }
+
+        public ProductoViewModel ProductoViewModel { get; set; }
+
 
         public static StockViewModel FromModel(StockSet stockSet)
         {
@@ -17,6 +22,9 @@ namespace LaTienda.Models
             {
                 Id = stockSet.Id,
                 Cantidad = stockSet.Cantidad,
+                ColorViewModel = ColorViewModel.FromView(stockSet.ColorSet),
+                TalleViewModel = TalleViewModel.FromView(stockSet.TalleSet),
+                ProductoViewModel = ProductoViewModel.FromModel(stockSet.ProductoSet),
             };
         }
     }

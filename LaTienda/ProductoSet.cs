@@ -24,10 +24,10 @@ namespace LaTienda
         public long Codigo { get; set; }
         public string Descripcion { get; set; }
         public double Costo { get; set; }
-        public long MargenDeGanancia { get; set; }
+        public int MargenDeGanancia { get; set; }
         public double Iva { get; set; }
         public double NetoGravado { get; set; }
-        public long PorcentajeIva { get; set; }
+        public int PorcentajeIva { get; set; }
         public double PrecioDeVenta { get; set; }
         public int Rubro_Id { get; set; }
         public int Marca_Id { get; set; }

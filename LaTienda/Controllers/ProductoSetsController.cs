@@ -53,6 +53,7 @@ namespace LaTienda.Controllers
         {
             if (ModelState.IsValid)
             {
+                productoSet.RealizarCalculos();
                 db.ProductoSet.Add(productoSet);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -89,9 +90,7 @@ namespace LaTienda.Controllers
         {
             if (ModelState.IsValid)
             {
-                productoSet.CalcularIva();
-                productoSet.CalcularIva();
-                productoSet.CalcularPrecioDeVenta();
+                productoSet.RealizarCalculos();
                 db.Entry(productoSet).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

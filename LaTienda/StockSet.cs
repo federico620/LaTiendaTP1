@@ -21,7 +21,7 @@ namespace LaTienda
         }
     
         public int Id { get; set; }
-        public string Cantidad { get; set; }
+        public int Cantidad { get; set; }
         public int Color_Id { get; set; }
         public int Talle_Id { get; set; }
         public int Producto_Id { get; set; }

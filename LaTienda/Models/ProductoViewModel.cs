@@ -11,9 +11,11 @@ namespace LaTienda.Models
         public string Descripcion { get; set; }
         public long Codigo { get; set; }
 
-        public MarcaSet MarcaSet { get; set; }
+        public double PrecioDeVenta { get; set; }
 
-        public RubroSet RubroSet { get; set; }
+        public MarcaViewModel MarcaViewModel { get; set; }
+
+        public RubroViewModel RubroViewModel { get; set; }
 
         public static ProductoViewModel FromModel(ProductoSet productoSet)
         {
@@ -22,10 +24,10 @@ namespace LaTienda.Models
                 Id = productoSet.Id,
                 Descripcion = productoSet.Descripcion,
                 Codigo = productoSet.Codigo,
-                //TODO: REFACTORIZAR A VIEWMODELS
-                //TODO: MarcaViewModel = MarcaViewModel.FromModel(productoSet.MarcaSet)
-                MarcaSet = productoSet.MarcaSet,
-                RubroSet = productoSet.RubroSet,
+                PrecioDeVenta = productoSet.PrecioDeVenta,
+                
+                MarcaViewModel = MarcaViewModel.FromView(productoSet.MarcaSet),
+                RubroViewModel = RubroViewModel.FromView(productoSet.RubroSet),
             };
         }
     }

@@ -181,9 +181,15 @@
     <Compile Include="MarcaSet.cs">
       <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClienteViewModel.cs" />
+    <Compile Include="Models\ColorViewModel.cs" />
+    <Compile Include="Models\LineaDeVentaViewModel.cs" />
+    <Compile Include="Models\MarcaViewModel.cs" />
     <Compile Include="Models\ProductoSet.cs" />
     <Compile Include="Models\ProductoViewModel.cs" />
+    <Compile Include="Models\RubroViewModel.cs" />
     <Compile Include="Models\StockViewModel.cs" />
+    <Compile Include="Models\TalleViewModel.cs" />
     <Compile Include="Models\UsuarioSet.cs" />
     <Compile Include="Models\VentaFromViewModel.cs" />
     <Compile Include="ProductoSet.cs">

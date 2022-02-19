@@ -21,8 +21,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @{ if (Session["UserID"] != null)
-                        {
+                   
                             <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                             <li>@Html.ActionLink("Gestion Productos", "index", "ProductoSets")</li>
                             <li>@Html.ActionLink("Gestion Rubros", "index", "RubroSets")</li>
@@ -34,11 +33,7 @@
                             <li>@Html.ActionLink("Gestion Usuarios", "index", "UsuarioSets")</li>
                             <li>@Html.ActionLink("Gestion Puntos de Venta", "index", "PuntoDeVentaSets")</li>
                             <li>@Html.ActionLink("Realizar Venta", "index", "RealizarVenta")</li>
-                        }
-                        else
-                        {
-                            <li>@Html.ActionLink("Login", "Login", "Login")</li>
-                        }
+
                     }
                 </ul>
             </div>

@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/13/2022 18:27:50
+-- Date Created: 02/18/2022 18:16:16
 -- Generated from EDMX file: C:\Users\Trassani\source\repos\LaTienda\LaTienda\LaTiendaModeloEDM.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
---USE [LaTienda];
+USE [LaTienda];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -119,7 +119,7 @@ GO
 -- Creating table 'ColorSet'
 CREATE TABLE [dbo].[ColorSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Codigo] bigint  NOT NULL,
+    [Codigo] int  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL
 );
 GO
@@ -131,14 +131,15 @@ CREATE TABLE [dbo].[ComprobanteSet] (
     [Fecha] datetime  NOT NULL,
     [FechaVen] datetime  NOT NULL,
     [Concepto] int  NOT NULL,
-    [TipoComprobante] int  NOT NULL
+    [TipoComprobante] int  NOT NULL,
+    [VentaSet_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'LineaDeVentaSet'
 CREATE TABLE [dbo].[LineaDeVentaSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Cantidad] bigint  NOT NULL,
+    [Cantidad] int  NOT NULL,
     [PrecioDeVenta] float  NOT NULL,
     [StockSet_Id] int  NOT NULL,
     [Venta_Id] int  NOT NULL
@@ -159,10 +160,10 @@ CREATE TABLE [dbo].[ProductoSet] (
     [Codigo] bigint  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL,
     [Costo] float  NOT NULL,
-    [MargenDeGanancia] bigint  NOT NULL,
+    [MargenDeGanancia] int  NOT NULL,
     [Iva] float  NOT NULL,
     [NetoGravado] float  NOT NULL,
-    [PorcentajeIva] bigint  NOT NULL,
+    [PorcentajeIva] int  NOT NULL,
     [PrecioDeVenta] float  NOT NULL,
     [Rubro_Id] int  NOT NULL,
     [Marca_Id] int  NOT NULL
@@ -188,7 +189,7 @@ GO
 -- Creating table 'StockSet'
 CREATE TABLE [dbo].[StockSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Cantidad] nvarchar(max)  NOT NULL,
+    [Cantidad] int  NOT NULL,
     [Color_Id] int  NOT NULL,
     [Talle_Id] int  NOT NULL,
     [Producto_Id] int  NOT NULL,
@@ -232,10 +233,9 @@ CREATE TABLE [dbo].[VentaSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Fecha] datetime  NOT NULL,
     [Total] float  NOT NULL,
-    [Comprobante_Id] int  NOT NULL,
-    [Cliente_Id] int  NOT NULL,
-    [Usuario_Id] int  NOT NULL,
-    [ComprobanteSet_Id] int  NOT NULL
+    [Comprobante_Id] int  NULL,
+    [Cliente_Id] int  NULL,
+    [Usuario_Id] int  NULL
 );
 GO
 
@@ -505,19 +505,19 @@ ON [dbo].[VentaSet]
     ([Usuario_Id]);
 GO
 
--- Creating foreign key on [ComprobanteSet_Id] in table 'VentaSet'
-ALTER TABLE [dbo].[VentaSet]
+-- Creating foreign key on [VentaSet_Id] in table 'ComprobanteSet'
+ALTER TABLE [dbo].[ComprobanteSet]
 ADD CONSTRAINT [FK_VentaSetComprobanteSet]
-    FOREIGN KEY ([ComprobanteSet_Id])
-    REFERENCES [dbo].[ComprobanteSet]
+    FOREIGN KEY ([VentaSet_Id])
+    REFERENCES [dbo].[VentaSet]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_VentaSetComprobanteSet'
 CREATE INDEX [IX_FK_VentaSetComprobanteSet]
-ON [dbo].[VentaSet]
-    ([ComprobanteSet_Id]);
+ON [dbo].[ComprobanteSet]
+    ([VentaSet_Id]);
 GO
 
 -- --------------------------------------------------

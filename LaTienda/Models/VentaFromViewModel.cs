@@ -9,15 +9,32 @@ namespace LaTienda
 {
     public class VentaFromViewModel
     {
+        public int Id { get; set; }
+
+        public double Total { get; set; }
+
         public DateTime Fecha { get; set; }
         public ProductoViewModel ProductoViewModel { get; set; }
         public StockViewModel StockViewModel { get; set; }
-        //TODO: ClienteViewModel ClienteViewModel { get; set; }
-        public ClienteSet ClienteSet { get; set; }
+        public ClienteViewModel ClienteViewModel { get; set; }
 
-        public VentaFromViewModel()
+        public List<LineaDeVentaViewModel> LineaDeVentaViewModels { get; set; } = new List<LineaDeVentaViewModel>();
+        
+        public static VentaFromViewModel FromModel(VentaSet ventaSet)
         {
-            ClienteSet = new ClienteSet();
+            var lineaDeVentaViewModels = new List<LineaDeVentaViewModel>();
+            foreach(var lv in ventaSet.LineaDeVentaSet)
+            {
+                lineaDeVentaViewModels.Add(LineaDeVentaViewModel.FromModel(lv));
+            }
+            return new VentaFromViewModel
+            {
+                Id = ventaSet.Id,
+                Total = ventaSet.Total,
+                Fecha = ventaSet.Fecha,
+                LineaDeVentaViewModels = lineaDeVentaViewModels,
+                
+            };
         }
     }
 }

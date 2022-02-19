@@ -21,7 +21,7 @@ namespace LaTienda
         }
     
         public int Id { get; set; }
-        public long Codigo { get; set; }
+        public int Codigo { get; set; }
         public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
