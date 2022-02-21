@@ -10,7 +10,7 @@ namespace LaTienda.Models
     {
         public int Id { get; set; }
 
-        public long Documento { get; set; }
+        public long? Documento { get; set; }
 
         public string Nombre { get; set; }
 
@@ -18,13 +18,14 @@ namespace LaTienda.Models
 
         public CondicionTributaria CondicionTributaria { get; set; }
 
-        public static ClienteViewModel FromView(ClienteSet clienteSet)
+        public static ClienteViewModel FromModel(ClienteSet clienteSet)
         {
             return new ClienteViewModel
             {
                 Id = clienteSet.Id,
                 Documento = clienteSet.Documento,
                 Nombre = clienteSet.Nombre,
+                Domicilio = clienteSet.Domicilio,
                 CondicionTributaria = clienteSet.CondicionTributaria,
             };
         }

@@ -28,12 +28,7 @@ namespace LaTienda.Controllers
         
         public ViewResult BuscarProducto(int venta_id, string searchString)
         {
-            var v = db.VentaSet.Include(x => x.LineaDeVentaSet).FirstOrDefault(x => x.Id.Equals(venta_id));
-
-            foreach (var lv in v.LineaDeVentaSet)
-            {
-                lv.StockSet = db.StockSet.Include(x => x.ProductoSet).Include(x => x.ColorSet).Include(x => x.TalleSet).FirstOrDefault(x => x.Id.Equals(lv.StockSet_Id));
-            }
+            VentaSet v = BuscarVenta(venta_id);
 
             var venta = VentaFromViewModel.FromModel(v);
             if (!String.IsNullOrEmpty(searchString))
@@ -56,12 +51,7 @@ namespace LaTienda.Controllers
 
         public ViewResult BuscarStock(int venta_id, int color_id, int talle_id, int producto_id)
         {
-            var v = db.VentaSet.Include(x => x.LineaDeVentaSet).FirstOrDefault(x => x.Id.Equals(venta_id));
-
-            foreach (var lv in v.LineaDeVentaSet)
-            {
-                lv.StockSet = db.StockSet.Include(x => x.ProductoSet).Include(x => x.ColorSet).Include(x => x.TalleSet).FirstOrDefault(x => x.Id.Equals(lv.StockSet_Id));
-            }
+            VentaSet v = BuscarVenta(venta_id);
 
             var venta = VentaFromViewModel.FromModel(v);
             var producto = db.ProductoSet.Include(p => p.MarcaSet).Include(p => p.RubroSet).Include(x => x.StockSet).FirstOrDefault(x => x.Id == producto_id);
@@ -80,13 +70,7 @@ namespace LaTienda.Controllers
 
         public ViewResult AgregarProducto(int venta_id, int producto_id, int stock_id, int cantidad)
         {
-            //var v = db.VentaSet.Include(x => x.LineaDeVentaSet.Select(y => y.StockSet).Select(z => z.ProductoSet)).FirstOrDefault(x => x.Id.Equals(venta_id));
-            var v = db.VentaSet.Include(x => x.LineaDeVentaSet).FirstOrDefault(x => x.Id.Equals(venta_id));
-            
-            foreach (var lv in v.LineaDeVentaSet)
-             {
-                lv.StockSet = db.StockSet.Include(x => x.ProductoSet).Include(x => x.ColorSet).Include(x => x.TalleSet).FirstOrDefault(x => x.Id.Equals(lv.StockSet_Id));
-            }
+            VentaSet v = BuscarVenta(venta_id);
 
             var venta = VentaFromViewModel.FromModel(v);
             var producto = db.ProductoSet.Include(p => p.MarcaSet).Include(p => p.RubroSet).Include(x => x.StockSet).FirstOrDefault(x => x.Id == producto_id);
@@ -100,18 +84,89 @@ namespace LaTienda.Controllers
                 lv.PrecioDeVenta = producto.PrecioDeVenta;
                 lv.StockSet = stock;
                 lv.StockSet_Id = stock_id;
-                v.LineaDeVentaSet.Add(lv);                
+                v.LineaDeVentaSet.Add(lv);
+                v.CalcularTotal();
                 db.SaveChanges();
                 venta.LineaDeVentaViewModels.Add(LineaDeVentaViewModel.FromModel(lv));
+                venta.Total = v.Total;
+                
             }
 
            venta.ProductoViewModel = ProductoViewModel.FromModel(producto);
            venta.StockViewModel = StockViewModel.FromModel(stock);
 
+
             ViewBag.Color_Id = db.ColorSet.ToList();
             ViewBag.Talle_Id = db.TalleSet.ToList();
 
             return View("Index",venta);
+        }
+
+        public ViewResult BuscarCliente(int venta_id, string searchCliente)
+        {
+            VentaSet v = BuscarVenta(venta_id);
+
+            var cliente = db.ClienteSet.FirstOrDefault(x => x.Documento.ToString().Equals(searchCliente));
+            if (cliente != null)
+            {
+                v.ClienteSet = cliente;
+                v.Cliente_Id = cliente.Id;
+            }
+            var venta = VentaFromViewModel.FromModel(v);
+            venta.ClienteViewModel = ClienteViewModel.FromModel(v.ClienteSet);
+            return View("Index", venta);
+        }
+
+        public ViewResult AgregarCliente(int venta_id, int? cliente_id)
+        {
+            VentaSet v = BuscarVenta(venta_id);
+
+            ClienteSet cliente;
+            if (cliente_id != null)
+            {
+                cliente = db.ClienteSet.FirstOrDefault(x => x.Id.Equals(cliente_id.Value));
+                if (cliente != null)
+                {
+                    v.ClienteSet = cliente;
+                    v.Cliente_Id = cliente.Id;
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                cliente = new ClienteSet();
+                cliente.CondicionTributaria = Enums.CondicionTributaria.CF;
+                v.ClienteSet = cliente;
+                //v.Cliente_Id = cliente.Id;
+                db.SaveChanges();
+            }
+            var venta = VentaFromViewModel.FromModel(v);
+
+            venta.ClienteViewModel = ClienteViewModel.FromModel(cliente);
+            return View("Index", venta);
+
+        }
+
+        private VentaSet BuscarVenta(int venta_id)
+        {
+            var v = db.VentaSet.Include(x => x.LineaDeVentaSet).Include(x => x.ClienteSet).FirstOrDefault(x => x.Id.Equals(venta_id));
+
+            foreach (var lv in v.LineaDeVentaSet)
+            {
+                lv.StockSet = db.StockSet.Include(x => x.ProductoSet).Include(x => x.ColorSet).Include(x => x.TalleSet).FirstOrDefault(x => x.Id.Equals(lv.StockSet_Id));
+            }
+
+            return v;
+        }
+
+
+        public ViewResult FinalizarVenta(int venta_id)
+        {
+            var v = BuscarVenta(venta_id);
+            v.InicializarComprobante();
+            ClienteAFIP.AutorizarVenta(v);
+            var venta = VentaFromViewModel.FromModel(v);
+            return View("Index", venta);
         }
     }
 }

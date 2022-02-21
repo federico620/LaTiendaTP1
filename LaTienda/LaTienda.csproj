@@ -57,6 +57,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -137,6 +138,21 @@
     <Compile Include="ComprobanteSet.cs">
       <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ServiceReferenceAFIP\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceWrapper2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceWrapper\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ClienteSetsController.cs" />
     <Compile Include="Controllers\ColorSetsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -181,6 +197,7 @@
     <Compile Include="MarcaSet.cs">
       <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClienteAFIP.cs" />
     <Compile Include="Models\ClienteViewModel.cs" />
     <Compile Include="Models\ColorViewModel.cs" />
     <Compile Include="Models\LineaDeVentaViewModel.cs" />
@@ -192,6 +209,7 @@
     <Compile Include="Models\TalleViewModel.cs" />
     <Compile Include="Models\UsuarioSet.cs" />
     <Compile Include="Models\VentaFromViewModel.cs" />
+    <Compile Include="Models\VentaSet.cs" />
     <Compile Include="ProductoSet.cs">
       <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
     </Compile>
@@ -219,6 +237,158 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceAFIP\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReferenceAFIP\configuration.svcinfo" />
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.CbteTipoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.ConceptoTipoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.DocTipoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.DummyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAEAConsultarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAEAGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAEARegInformativoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAEAResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAEASinMovConsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAEASinMovimientoConsultarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAEASinMovimientoInformarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAEASinMovResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAEASolicitarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAEResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECAESolicitarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECompConsultaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECompConsultarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECompTotXRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECompUltimoAutorizadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FECotizacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEDummyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEPaisResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEParamGetCotizacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEParamGetPtosVentaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEParamGetTiposCbteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEParamGetTiposConceptoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEParamGetTiposDocResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEParamGetTiposIvaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEParamGetTiposMonedasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEParamGetTiposOpcionalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEParamGetTiposPaisesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEParamGetTiposTributosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FEPtoVentaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FERecuperaLastCbteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FERegXReqResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.FETributoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.IvaTipoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.MonedaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.OpcionalTipoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ServiceReferenceAFIP\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\ServiceReferenceWrapper2\LaTienda.ServiceReferenceWrapper2.Autorizacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ServiceReferenceWrapper2\LoginService.wsdl" />
+    <None Include="Connected Services\ServiceReferenceWrapper2\LoginService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReferenceWrapper2\LoginService1.wsdl" />
+    <None Include="Connected Services\ServiceReferenceWrapper2\LoginService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReferenceWrapper2\LoginService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReferenceWrapper\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReferenceWrapper\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReferenceWrapper2\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReferenceWrapper2\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReferenceWrapper2\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\ServiceReferenceWrapper\LaTienda.ServiceReferenceWrapper.Autorizacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ServiceReferenceWrapper\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -247,6 +417,18 @@
     <Content Include="LaTiendaModeloEDM.edmx.diagram">
       <DependentUpon>LaTiendaModeloEDM.edmx</DependentUpon>
     </Content>
+    <None Include="Connected Services\ServiceReferenceAFIP\service.wsdl" />
+    <None Include="Connected Services\ServiceReferenceWrapper\LoginService.wsdl" />
+    <None Include="Connected Services\ServiceReferenceWrapper\LoginService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReferenceWrapper\LoginService1.wsdl" />
+    <None Include="Connected Services\ServiceReferenceWrapper\LoginService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReferenceWrapper\LoginService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -354,6 +536,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceAFIP\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceWrapper2\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceWrapper\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

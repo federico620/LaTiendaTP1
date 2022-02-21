@@ -22,7 +22,7 @@ namespace LaTienda
     
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public long Documento { get; set; }
+        public Nullable<long> Documento { get; set; }
         public string Domicilio { get; set; }
         public LaTienda.Enums.CondicionTributaria CondicionTributaria { get; set; }
         public LaTienda.Enums.TipoDocumento TipoDocumento { get; set; }

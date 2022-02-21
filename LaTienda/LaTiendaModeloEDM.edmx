@@ -10,9 +10,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Documento" Type="bigint" Nullable="false" />
-          <Property Name="Domicilio" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Documento" Type="bigint" />
+          <Property Name="Domicilio" Type="nvarchar(max)" />
           <Property Name="CondicionTributaria" Type="int" Nullable="false" />
           <Property Name="TipoDocumento" Type="int" Nullable="false" />
         </EntityType>
@@ -371,9 +371,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Documento" Type="Int64" Nullable="false" />
-          <Property Name="Domicilio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Documento" Type="Int64" Nullable="true" />
+          <Property Name="Domicilio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
           <Property Name="CondicionTributaria" Type="LaTiendaModeloEDM.CondicionTributaria" Nullable="false" />
           <Property Name="TipoDocumento" Type="LaTiendaModeloEDM.TipoDocumento" Nullable="false" />
           <NavigationProperty Name="VentaSet" Relationship="Self.FK_ClienteVenta" FromRole="ClienteSet" ToRole="VentaSet" />

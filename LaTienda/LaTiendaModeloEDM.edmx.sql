@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/18/2022 18:16:16
+-- Date Created: 02/20/2022 21:12:17
 -- Generated from EDMX file: C:\Users\Trassani\source\repos\LaTienda\LaTienda\LaTiendaModeloEDM.edmx
 -- --------------------------------------------------
 
@@ -23,12 +23,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ColorStock]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[StockSet] DROP CONSTRAINT [FK_ColorStock];
 GO
-IF OBJECT_ID(N'[dbo].[FK_StockSetLineaDeVenta]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LineaDeVentaSet] DROP CONSTRAINT [FK_StockSetLineaDeVenta];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VentaLineaDeVenta]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LineaDeVentaSet] DROP CONSTRAINT [FK_VentaLineaDeVenta];
-GO
 IF OBJECT_ID(N'[dbo].[FK_MarcaProducto]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ProductoSet] DROP CONSTRAINT [FK_MarcaProducto];
 GO
@@ -38,23 +32,29 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_RubroProducto]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ProductoSet] DROP CONSTRAINT [FK_RubroProducto];
 GO
+IF OBJECT_ID(N'[dbo].[FK_StockSetLineaDeVenta]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineaDeVentaSet] DROP CONSTRAINT [FK_StockSetLineaDeVenta];
+GO
 IF OBJECT_ID(N'[dbo].[FK_SucursalPuntoDeVenta]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PuntoDeVentaSet] DROP CONSTRAINT [FK_SucursalPuntoDeVenta];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SucursalStockSet]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[StockSet] DROP CONSTRAINT [FK_SucursalStockSet];
 GO
-IF OBJECT_ID(N'[dbo].[FK_TalleStock]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[StockSet] DROP CONSTRAINT [FK_TalleStock];
-GO
 IF OBJECT_ID(N'[dbo].[FK_SucursalUsuario]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UsuarioSet] DROP CONSTRAINT [FK_SucursalUsuario];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TalleStock]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[StockSet] DROP CONSTRAINT [FK_TalleStock];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UsuarioVenta]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[VentaSet] DROP CONSTRAINT [FK_UsuarioVenta];
 GO
+IF OBJECT_ID(N'[dbo].[FK_VentaLineaDeVenta]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineaDeVentaSet] DROP CONSTRAINT [FK_VentaLineaDeVenta];
+GO
 IF OBJECT_ID(N'[dbo].[FK_VentaSetComprobanteSet]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[VentaSet] DROP CONSTRAINT [FK_VentaSetComprobanteSet];
+    ALTER TABLE [dbo].[ComprobanteSet] DROP CONSTRAINT [FK_VentaSetComprobanteSet];
 GO
 
 -- --------------------------------------------------
@@ -108,9 +108,9 @@ GO
 -- Creating table 'ClienteSet'
 CREATE TABLE [dbo].[ClienteSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Nombre] nvarchar(max)  NOT NULL,
-    [Documento] bigint  NOT NULL,
-    [Domicilio] nvarchar(max)  NOT NULL,
+    [Nombre] nvarchar(max)  NULL,
+    [Documento] bigint  NULL,
+    [Domicilio] nvarchar(max)  NULL,
     [CondicionTributaria] int  NOT NULL,
     [TipoDocumento] int  NOT NULL
 );
