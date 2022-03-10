@@ -21,7 +21,7 @@ namespace LaTienda
             double total = 0;
             foreach (var lv in LineaDeVentaSet)
             {
-                total += lv.StockSet.ProductoSet.NetoGravado;
+                total += lv.StockSet.ProductoSet.NetoGravado * lv.Cantidad;
             }
             return total;
         }
@@ -31,36 +31,44 @@ namespace LaTienda
             double total = 0;
             foreach (var lv in LineaDeVentaSet)
             {
-                total += lv.StockSet.ProductoSet.Iva;
+                total += lv.StockSet.ProductoSet.Iva * lv.Cantidad;
             }
             return total;
         }
 
         public void InicializarComprobante()
         {
-            if (Total < 10000 && ClienteSet.CondicionTributaria.Equals(Enums.CondicionTributaria.CF))
+            if (Total > 10000 && ClienteSet.CondicionTributaria.Equals(Enums.CondicionTributaria.CF))
             {
-                this.ComprobanteSet = new ComprobanteSet {Fecha = this.Fecha, FechaVen = this.Fecha.AddDays(10), Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaB };
+                this.ComprobanteSet = new ComprobanteSet {Fecha = this.Fecha, Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaB };
             }
-            else if (Total < 10000 && ClienteSet == null)
+            else if (Total < 10000 && ClienteSet.Documento == 0)
             {
-                this.ComprobanteSet = new ComprobanteSet { Fecha = this.Fecha, FechaVen = this.Fecha.AddDays(10), Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaB };
+                this.ComprobanteSet = new ComprobanteSet { Fecha = this.Fecha, Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaB };
             }
             else if (ClienteSet.CondicionTributaria == Enums.CondicionTributaria.RI)
             {
-                this.ComprobanteSet = new ComprobanteSet { Fecha = this.Fecha, FechaVen = this.Fecha.AddDays(10), Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaA };
+                this.ComprobanteSet = new ComprobanteSet { Fecha = this.Fecha, Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaA };
             }
             else if (ClienteSet.CondicionTributaria == Enums.CondicionTributaria.M)
             {
-                this.ComprobanteSet = new ComprobanteSet { Fecha = this.Fecha, FechaVen = this.Fecha.AddDays(10), Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaA };
+                this.ComprobanteSet = new ComprobanteSet { Fecha = this.Fecha, Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaA };
             }
             else if (ClienteSet.CondicionTributaria == Enums.CondicionTributaria.E)
             {
-                this.ComprobanteSet = new ComprobanteSet { Fecha = this.Fecha, FechaVen = this.Fecha.AddDays(10), Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaB };
+                this.ComprobanteSet = new ComprobanteSet { Fecha = this.Fecha, Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaB };
             }
             else if (ClienteSet.CondicionTributaria == Enums.CondicionTributaria.NR)
             {
-                this.ComprobanteSet = new ComprobanteSet { Fecha = this.Fecha, FechaVen = this.Fecha.AddDays(10), Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaB };
+                this.ComprobanteSet = new ComprobanteSet { Fecha = this.Fecha, Concepto = Enums.Concepto.Producto, TipoComprobante = Enums.TipoComprobante.FacturaB };
+            }
+        }
+
+        public void ActualizarStock()
+        {
+            foreach(var lv in LineaDeVentaSet)
+            {
+                lv.StockSet.ActualizarStock(lv.Cantidad);
             }
         }
     }

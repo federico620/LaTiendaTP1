@@ -136,8 +136,12 @@ namespace LaTienda.Controllers
             {
                 cliente = new ClienteSet();
                 cliente.CondicionTributaria = Enums.CondicionTributaria.CF;
+                cliente.TipoDocumento = Enums.TipoDocumento.OTRO;
+                cliente.Domicilio = "";
+                cliente.Documento = 0;
+                cliente.Nombre = "";
                 v.ClienteSet = cliente;
-                //v.Cliente_Id = cliente.Id;
+                v.Cliente_Id = cliente.Id;
                 db.SaveChanges();
             }
             var venta = VentaFromViewModel.FromModel(v);
@@ -163,10 +167,39 @@ namespace LaTienda.Controllers
         public ViewResult FinalizarVenta(int venta_id)
         {
             var v = BuscarVenta(venta_id);
-            v.InicializarComprobante();
-            ClienteAFIP.AutorizarVenta(v);
             var venta = VentaFromViewModel.FromModel(v);
-            return View("Index", venta);
+            if (v.Cliente_Id != null && v.LineaDeVentaSet != null)
+            {
+                v.InicializarComprobante();
+                if (v.ComprobanteSet != null)
+                {
+                    var resultado = ClienteAFIP.AutorizarVenta(v);
+
+
+                    if (resultado.Equals("A"))
+                    {
+                        v.ActualizarStock();
+                        db.SaveChanges();
+                        return View("FinalizarVenta", venta);
+                    }
+                    else
+                    {
+                        //eliminar venta
+                        v.ComprobanteSet.FechaVen = DateTime.Now;
+                        v.ComprobanteSet = null;
+                        v.Comprobante_Id = null;
+                        var lvs = v.LineaDeVentaSet.ToList();
+                        foreach (var lv in lvs)
+                        {
+                            db.LineaDeVentaSet.Remove(lv);
+                        }
+                        db.SaveChanges();
+                        db.VentaSet.Remove(v);
+                        db.SaveChanges();
+                        return View("VentaFallida");
+                    }
+                }else return View("VentaFallida");
+            }else return View("VentaFallida");
         }
     }
 }

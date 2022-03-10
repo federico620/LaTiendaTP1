@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "VentaFallida";
+}
+
+<h2>No se pudo completar la venta</h2>
+
+<div>
+    @using (Html.BeginForm("Index", "RealizarVenta", FormMethod.Get))
+    {
+        <input type="submit" value="Volver" />
+    }

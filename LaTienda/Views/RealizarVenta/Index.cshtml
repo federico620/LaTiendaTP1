@@ -9,76 +9,81 @@
 
 <h2>Realizar Venta</h2>
 
-<div style="clear:both">
-
+<div>
     <div>
-        <div>
 
-            @using (Html.BeginForm("BuscarProducto", "RealizarVenta", FormMethod.Get))
-            {
-                @Html.Hidden("venta_id", Model.Id)
-                <p>
-                    Código del Producto: @Html.TextBox("SearchString", searchString)
-                    <input type="submit" value="Buscar" />
-                </p>
-            }
+        @using (Html.BeginForm("BuscarProducto", "RealizarVenta", FormMethod.Get))
+        {
+            @Html.Hidden("venta_id", Model.Id)
             <p>
-                @Html.Label("Descripcion")
-                @Html.DisplayFor(model => model.ProductoViewModel.Descripcion)
+                Código del Producto: @Html.TextBox("SearchString", searchString)
+                <input type="submit" value="Buscar" />
             </p>
-            <div>
-                <div>
-                    <p>
-                        @Html.Label("Marca")
-                        @Html.DisplayFor(model => model.ProductoViewModel.MarcaViewModel.Descripcion)
-                    </p>
-                    <p>
-                        @Html.Label("Rubro")
-                        @Html.DisplayFor(model => model.ProductoViewModel.RubroViewModel.Descripcion)
-                    </p>
-                </div>
-
-                @if (Model.ProductoViewModel != null)
-                {
-                    using (Html.BeginForm("BuscarStock", "RealizarVenta", FormMethod.Get))
-                    {
-                        @Html.Hidden("venta_id", Model.Id)
-                        @Html.Hidden("producto_id", Model.ProductoViewModel.Id)
-                        <div>
-                            @Html.Label("Color")
-                            @Html.DropDownList("Color_Id", new SelectList(ViewBag.Color_Id, "Id", "Descripcion"), htmlAttributes: new { @class = "form-control" })
-                        </div>
-                        <div>
-                            @Html.Label("Talle")
-                            @Html.DropDownList("Talle_Id", new SelectList(ViewBag.Talle_Id, "Id", "Descripcion"), htmlAttributes: new { @class = "form-control" })
-                        </div>
-                        <div>
-                            <p>
-                                <input type="submit" value="Buscar" />
-                            </p>
-                        </div>
-                    }
-                }
-                @Html.Label("Stock")
-                @Html.DisplayFor(model => model.StockViewModel.Cantidad)
-
-                <br><br>
-                @Html.Label("Precio")
-                @Html.DisplayFor(model => model.ProductoViewModel.PrecioDeVenta)
+        }
+        <br />
+        <p>
+            @Html.Label("Descripcion: ")
+            @Html.DisplayFor(model => model.ProductoViewModel.Descripcion)
+        </p>
+        <div class="row">
+            <div class="col-lg-6">
+                <p>
+                    @Html.Label("Marca:  ")
+                    @Html.DisplayFor(model => model.ProductoViewModel.MarcaViewModel.Descripcion)
+                </p>
             </div>
-
-            @if (Model.StockViewModel != null)
+            <div class="col-lg-6">
+                <p>
+                    @Html.Label("Rubro:  ")
+                    @Html.DisplayFor(model => model.ProductoViewModel.RubroViewModel.Descripcion)
+                </p>
+            </div>
+            <br><br><br>
+            @if (Model.ProductoViewModel != null)
             {
-                using (Html.BeginForm("AgregarProducto", "RealizarVenta", FormMethod.Get))
+                using (Html.BeginForm("BuscarStock", "RealizarVenta", FormMethod.Get))
                 {
                     @Html.Hidden("venta_id", Model.Id)
                     @Html.Hidden("producto_id", Model.ProductoViewModel.Id)
-                    @Html.Hidden("stock_id", Model.StockViewModel.Id)
-                    @Html.Label("Cantidad")
-                    <input id="cantidad" name="cantidad" type="number" min="1" max="@Model.StockViewModel.Cantidad" value="" />
-                    <input type="submit" value="Agregar" />
+                    <div class="col-lg-4">
+                        @Html.Label("Color")
+                        @Html.DropDownList("Color_Id", new SelectList(ViewBag.Color_Id, "Id", "Descripcion"), htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-4">
+                        @Html.Label("Talle")
+                        @Html.DropDownList("Talle_Id", new SelectList(ViewBag.Talle_Id, "Id", "Descripcion"), htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-4" style="padding-top: 2rem;">
+                        <p>
+                            <input type="submit" value="Buscar" />
+                        </p>
+                    </div>
                 }
             }
+
+            <div class="col-lg-6" style="padding:3rem;">
+                @Html.Label("Stock: ")
+                @Html.DisplayFor(model => model.StockViewModel.Cantidad)
+            </div>
+            <div class="col-lg-6" style="padding:3rem;">
+                @Html.Label("Precio: ")
+                @Html.DisplayFor(model => model.ProductoViewModel.PrecioDeVenta)
+            </div>
+
+            <div class="col-lg-12">
+                @if (Model.StockViewModel != null)
+                {
+                    using (Html.BeginForm("AgregarProducto", "RealizarVenta", FormMethod.Get))
+                    {
+                        @Html.Hidden("venta_id", Model.Id)
+                        @Html.Hidden("producto_id", Model.ProductoViewModel.Id)
+                        @Html.Hidden("stock_id", Model.StockViewModel.Id)
+                        @Html.Label("Cantidad")
+                        <input id="cantidad" name="cantidad" type="number" min="1" max="@Model.StockViewModel.Cantidad" value="" />
+                        <input type="submit" value="Agregar" />
+                    }
+                }
+            </div>
 
 
             <table class="table">
@@ -127,53 +132,62 @@
                     </tr>
                 }
             </table>
-            @Html.Label("Total")
-            @Html.DisplayFor(model => model.Total)
-
-        </div>
-        
-        <div>
-            @using (Html.BeginForm("BuscarCliente", "RealizarVenta", FormMethod.Get))
-            {
-
-                @Html.Hidden("venta_id", Model.Id)
-
-                <p>
-                    Documento: @Html.TextBox("SearchCliente", searchCliente)
-                    <input type="submit" value="Buscar" />
-                </p>
-            }
-
-            @Html.Label("Nombre")
-            @Html.DisplayFor(model => model.ClienteViewModel.Nombre)
-            @Html.Label("Domicilio")
-            @Html.DisplayFor(model => model.ClienteViewModel.Domicilio)
-
-            @if (Model.ClienteViewModel != null)
-            {
-                @Html.Label("Condicion Tributaria")
-                @Html.DisplayFor(model => model.ClienteViewModel.CondicionTributaria)
-            }
-            else
-            {
-                @Html.Label("Condicion Tributaria")
-                @Html.Raw(LaTienda.Enums.CondicionTributaria.CF + "")
-            }
+            <br />
             <div>
-                @using (Html.BeginForm("AgregarCliente", "RealizarVenta", FormMethod.Get))
+                @Html.Label("Total: ")
+                @Html.DisplayFor(model => model.Total)
+            </div>
+        </div>
+        <br />
+        <h4>Cliente</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                @using (Html.BeginForm("BuscarCliente", "RealizarVenta", FormMethod.Get))
                 {
 
                     @Html.Hidden("venta_id", Model.Id)
-                  
-                    @Html.Hidden("cliente_id", Model.ClienteViewModel?.Id ?? null)
-                    
+
                     <p>
-                        <input type="submit" value="Agregar Cliente" />
+                        Documento: @Html.TextBox("SearchCliente", searchCliente)
+                        <input type="submit" value="Buscar" />
                     </p>
+                }
+                <div>
+                    @using (Html.BeginForm("AgregarCliente", "RealizarVenta", FormMethod.Get))
+                    {
+
+                        @Html.Hidden("venta_id", Model.Id)
+
+                        @Html.Hidden("cliente_id", Model.ClienteViewModel?.Id ?? null)
+
+                        <p>
+                            <input type="submit" value="Agregar Cliente" />
+                        </p>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6">
+                @Html.Label("Nombre: ")
+                @Html.DisplayFor(model => model.ClienteViewModel.Nombre)
+                <br />
+                @Html.Label("Domicilio: ")
+                @Html.DisplayFor(model => model.ClienteViewModel.Domicilio)
+                <br />
+                @if (Model.ClienteViewModel != null)
+                {
+                    @Html.Label("Condicion Tributaria: ")
+                    @Html.DisplayFor(model => model.ClienteViewModel.CondicionTributaria)
+                    <br />
+                }
+                else
+                {
+                    @Html.Label("Condicion Tributaria: ")
+                    @Html.Raw(LaTienda.Enums.CondicionTributaria.CF + "")
+                    <br />
                 }
             </div>
         </div>
-
+        <br /><br />
         <div>
             @using (Html.BeginForm("FinalizarVenta", "RealizarVenta", FormMethod.Get))
             {
@@ -190,40 +204,6 @@
 
 
 
-
-
-
-
-    @using (Html.BeginForm())
-{
-
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Cliente_Id, "Cliente_Id", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Cliente_Id", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Cliente_Id, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
-
-
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }

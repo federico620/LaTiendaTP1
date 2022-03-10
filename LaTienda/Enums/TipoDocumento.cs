@@ -10,5 +10,6 @@ namespace LaTienda.Enums
         CUIT = 80,
         CUIL = 86,
         DNI = 96,
+        OTRO = 99,
     }
 }
