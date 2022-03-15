@@ -505,7 +505,7 @@
           <Property Name="Legajo" Type="Int64" Nullable="false" />
           <Property Name="UsuarioNick" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RolUsuario1" Type="LaTiendaModeloEDM.RolEnum" Nullable="false" />
+          <Property Name="RolUsuario1" Nullable="false" Type="LaTiendaModeloEDM.RolEnum" />
           <Property Name="Sucursal_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SucursalSet" Relationship="Self.FK_SucursalUsuario" FromRole="UsuarioSet" ToRole="SucursalSet" />
           <NavigationProperty Name="VentaSet" Relationship="Self.FK_UsuarioVenta" FromRole="UsuarioSet" ToRole="VentaSet" />

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using LaTienda.Models.Auth;
 using System.Web.Mvc;
 
 namespace LaTienda.Controllers
 {
-    public class HomeController : Controller
+    [CustomAuthorize(Roles = "Vendedor")]
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         { 

@@ -8,9 +8,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Net;
 using LaTienda.Models;
+using LaTienda.Models.Auth;
 
 namespace LaTienda.Controllers
 {
+    [CustomAuthorize(Roles = "Vendedor")]
     public class RealizarVentaController : Controller
     {
 

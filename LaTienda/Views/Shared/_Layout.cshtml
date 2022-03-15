@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using LaTienda.Enums
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,17 +22,28 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Gestion Productos", "index", "ProductoSets")</li>
-                    <li>@Html.ActionLink("Gestion Rubros", "index", "RubroSets")</li>
-                    <li>@Html.ActionLink("Gestion Marcas", "index", "MarcaSets")</li>
-                    <li>@Html.ActionLink("Gestion Colores", "index", "ColorSets")</li>
-                    <li>@Html.ActionLink("Gestion Talles", "index", "TalleSets")</li>
-                    <li>@Html.ActionLink("Gestion Stocks", "index", "StockSets")</li>
-                    <li>@Html.ActionLink("Gestion Sucursales", "index", "SucursalSets")</li>
-                    <li>@Html.ActionLink("Gestion Usuarios", "index", "UsuarioSets")</li>
-                    <li>@Html.ActionLink("Gestion Clientes", "index", "ClienteSets")</li>
-                    <li>@Html.ActionLink("Gestion Puntos de Venta", "index", "PuntoDeVentaSets")</li>
-                    <li>@Html.ActionLink("Realizar Venta", "index", "RealizarVenta")</li>
+                    @if (ViewBag.RolVista == RolEnum.Administrativo.ToString())
+                    {
+                        <li>@Html.ActionLink("Gestion Productos", "index", "ProductoSets")</li>
+                        <li>@Html.ActionLink("Gestion Rubros", "index", "RubroSets")</li>
+                        <li>@Html.ActionLink("Gestion Marcas", "index", "MarcaSets")</li>
+                        <li>@Html.ActionLink("Gestion Colores", "index", "ColorSets")</li>
+                        <li>@Html.ActionLink("Gestion Talles", "index", "TalleSets")</li>
+                        <li>@Html.ActionLink("Gestion Stocks", "index", "StockSets")</li>
+                        <li>@Html.ActionLink("Gestion Sucursales", "index", "SucursalSets")</li>
+                        <li>@Html.ActionLink("Gestion Usuarios", "index", "UsuarioSets")</li>
+                        <li>@Html.ActionLink("Gestion Clientes", "index", "ClienteSets")</li>
+                        <li>@Html.ActionLink("Gestion Puntos de Venta", "index", "PuntoDeVentaSets")</li>
+                        <li>@Html.ActionLink("Realizar Venta", "index", "RealizarVenta")</li>
+                        <li>@Html.ActionLink("LogOut", "LogOut", "Login")</li>
+                    }
+                    else if (ViewBag.RolVista == RolEnum.Vendedor.ToString())
+                    {
+                        <li>@Html.ActionLink("Gestion Clientes", "index", "ClienteSets")</li>
+                        <li>@Html.ActionLink("Realizar Venta", "index", "RealizarVenta")</li>
+                        <li>@Html.ActionLink("LogOut", "LogOut", "Login")</li>
+                    }
+
                 </ul>
             </div>
         </div>
