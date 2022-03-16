@@ -1,12 +1,15 @@
-﻿using System;
+﻿using LaTienda.Models.Auth;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace LaTienda.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         // GET: Login
         public ActionResult Login()
@@ -17,26 +20,79 @@ namespace LaTienda.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(UsuarioSet objUser)
+        public ActionResult Login(UsuarioSet loginView, string ReturnUrl = "")
         {
             if (ModelState.IsValid)
             {
-                LaTiendaEntities db = new LaTiendaEntities();
+                if (Membership.ValidateUser(loginView.UsuarioNick, loginView.Password))
                 {
-                    var obj = db.UsuarioSet.Where(a => a.UsuarioNick.Equals(objUser.UsuarioNick) && a.Password.Equals(objUser.Password)).FirstOrDefault();
-                    if (obj != null)
+                    var user = (CustomMembershipUser)Membership.GetUser(loginView.UsuarioNick, false);
+                    if (user != null)
                     {
-                        Session["UserID"] = obj.Id.ToString();
-                        Session["UserName"] = obj.Nombre.ToString();
-                        obj.PuntoDeVenta = objUser.PuntoDeVenta;
-                        
-                        return RedirectToAction("UserDashBoard");
+                        //CustomSerializeModel userModel = new Models.CustomSerializeModel()
+                        //{
+                        //    UserId = user.UserId,
+                        //    FirstName = user.FirstName,
+                        //    LastName = user.LastName,
+                        //    RoleName = user.Roles.Select(r => r.RoleName).ToList()
+                        //};
+
+                        string userData = JsonConvert.SerializeObject(user);
+                        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket
+                            (
+                            1, loginView.UsuarioNick, DateTime.Now, DateTime.Now.AddMinutes(15), false, userData
+                            );
+
+                        string enTicket = FormsAuthentication.Encrypt(authTicket);
+                        HttpCookie faCookie = new HttpCookie("Cookie1", enTicket);
+                        Response.Cookies.Add(faCookie);
+                    }
+
+                    if (Url.IsLocalUrl(ReturnUrl))
+                    {
+                        return Redirect(ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index","Home");
                     }
                 }
             }
-            return View(objUser);
+            ModelState.AddModelError("", "Something Wrong : Username or Password invalid ^_^ ");
+            return View(loginView);
         }
+
+        public ActionResult LogOut()
+        {
+            HttpCookie cookie = new HttpCookie("Cookie1", "");
+            cookie.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie);
+
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Login", null);
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Login(UsuarioSet objUser)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        LaTiendaEntities db = new LaTiendaEntities();
+        //        {
+        //            var obj = db.UsuarioSet.Where(a => a.UsuarioNick.Equals(objUser.UsuarioNick) && a.Password.Equals(objUser.Password)).FirstOrDefault();
+        //            if (obj != null)
+        //            {
+        //                Session["UserID"] = obj.Id.ToString();
+        //                Session["UserName"] = obj.Nombre.ToString();
+        //                obj.PuntoDeVenta = objUser.PuntoDeVenta;
+
+        //                return RedirectToAction("UserDashBoard");
+        //            }
+        //        }
+        //    }
+        //    return View(objUser);
+        //}
 
         public ActionResult UserDashBoard()
         {
