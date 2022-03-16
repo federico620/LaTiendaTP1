@@ -15,8 +15,6 @@ namespace LaTienda.Models
                 string guid = "C2840D23-7DE1-4D3D-A4D3-AD34C17C92D4";
                 var wrapper = new ServiceReferenceWrapper.LoginServiceClient().SolicitarAutorizacion(guid);
                 var con = new ServiceReferenceAFIP.ServiceSoapClient();
-                //ImpTotConc es 0 para facturac
-                //ImpNeto Para comprobantes tipo C este campo corresponde al Importe del SubTotal.
                 var fecabreq = new ServiceReferenceAFIP.FECAECabRequest
                 {
                     CbteTipo = (int)venta.ComprobanteSet.TipoComprobante,
@@ -59,9 +57,7 @@ namespace LaTienda.Models
                     MonCotiz = 1,
                     Iva = alicIvas,
                 };
-                //CbteFch = $"{venta.Fecha.Year}{venta.Fecha.Month}{venta.Fecha.Day}",
-
-
+                
                 var fedetreqs = new ServiceReferenceAFIP.FECAEDetRequest[] { fedetreq };
                 var fecaeReq = new ServiceReferenceAFIP.FECAERequest
                 {

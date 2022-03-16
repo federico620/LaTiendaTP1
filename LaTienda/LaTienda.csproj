@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Controllers\ClienteSetsController.cs" />
     <Compile Include="Controllers\ColorSetsController.cs" />
+    <Compile Include="Controllers\ComprobanteSetsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LineaDeVentaSetsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -495,6 +496,11 @@
     <Content Include="Views\RealizarVenta\Index.cshtml" />
     <Content Include="Views\RealizarVenta\FinalizarVenta.cshtml" />
     <Content Include="Views\RealizarVenta\VentaFallida.cshtml" />
+    <Content Include="Views\ComprobanteSets\Create.cshtml" />
+    <Content Include="Views\ComprobanteSets\Delete.cshtml" />
+    <Content Include="Views\ComprobanteSets\Details.cshtml" />
+    <Content Include="Views\ComprobanteSets\Edit.cshtml" />
+    <Content Include="Views\ComprobanteSets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
