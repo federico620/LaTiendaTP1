@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="LaTiendaModeloEDM.StockSet" Width="1.5" PointX="8.875" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="LaTiendaModeloEDM.SucursalSet" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LaTiendaModeloEDM.TalleSet" Width="1.5" PointX="12.375" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaTiendaModeloEDM.UsuarioSet" Width="1.5" PointX="1.875" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.UsuarioSet" Width="1.5" PointX="2" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LaTiendaModeloEDM.VentaSet" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
         <AssociationConnector Association="LaTiendaModeloEDM.FK_ClienteVenta" ManuallyRouted="false" />
         <AssociationConnector Association="LaTiendaModeloEDM.FK_ColorStock" ManuallyRouted="false" />

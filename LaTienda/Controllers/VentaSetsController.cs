@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LaTienda;
+using LaTienda.Models.Auth;
 
 namespace LaTienda.Controllers
 {
+    [CustomAuthorize(Roles = "Administrativo")]
     public class VentaSetsController : Controller
     {
         private LaTiendaEntities db = new LaTiendaEntities();
@@ -123,7 +125,16 @@ namespace LaTienda.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            VentaSet ventaSet = db.VentaSet.Find(id);
+            VentaSet ventaSet = db.VentaSet.Include(x => x.LineaDeVentaSet).Include(x => x.ClienteSet).Include(x => x.ComprobanteSet).FirstOrDefault(x => x.Id.Equals(id));
+            if (ventaSet.ComprobanteSet != null)
+            {
+                db.ComprobanteSet.Remove(ventaSet.ComprobanteSet);
+            }
+            var lvs = ventaSet.LineaDeVentaSet.ToList();
+            foreach (var lv in lvs)
+            {
+                db.LineaDeVentaSet.Remove(lv);
+            }
             db.VentaSet.Remove(ventaSet);
             db.SaveChanges();
             return RedirectToAction("Index");

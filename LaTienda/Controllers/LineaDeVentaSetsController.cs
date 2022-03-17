@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LaTienda;
+using LaTienda.Models.Auth;
 
 namespace LaTienda.Controllers
 {
+    [CustomAuthorize(Roles = "Vendedor")]
     public class LineaDeVentaSetsController : Controller
     {
         private LaTiendaEntities db = new LaTiendaEntities();

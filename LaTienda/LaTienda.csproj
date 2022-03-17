@@ -148,6 +148,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClienteSetsController.cs" />
     <Compile Include="Controllers\ColorSetsController.cs" />
     <Compile Include="Controllers\ComprobanteSetsController.cs" />
@@ -193,10 +194,15 @@
     <Compile Include="MarcaSet.cs">
       <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Auth\CustomAuthorizeAttribute.cs" />
     <Compile Include="Models\ClienteAFIP.cs" />
     <Compile Include="Models\ClienteViewModel.cs" />
     <Compile Include="Models\ColorViewModel.cs" />
     <Compile Include="Models\LineaDeVentaViewModel.cs" />
+    <Compile Include="Models\Auth\CustomMembership.cs" />
+    <Compile Include="Models\Auth\CustomMemberShipUser.cs" />
+    <Compile Include="Models\Auth\CustomPrincipal.cs" />
+    <Compile Include="Models\Auth\CustomRole.cs" />
     <Compile Include="Models\MarcaViewModel.cs" />
     <Compile Include="Models\ProductoSet.cs" />
     <Compile Include="Models\ProductoViewModel.cs" />
@@ -504,6 +510,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
