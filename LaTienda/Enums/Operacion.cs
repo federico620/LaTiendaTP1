@@ -5,12 +5,9 @@ using System.Web;
 
 namespace LaTienda.Enums
 {
-    public enum CondicionTributariaEnum
+    public enum Operacion
     {
-        RI,
-        M,
-        E,
-        NR,
-        CF,
+        Venta,
+        Compra,
     }
 }

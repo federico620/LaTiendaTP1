@@ -176,13 +176,13 @@
                 @if (Model.ClienteViewModel != null)
                 {
                     @Html.Label("Condicion Tributaria: ")
-                    @Html.DisplayFor(model => model.ClienteViewModel.CondicionTributaria)
+                    @Html.DisplayFor(model => model.ClienteViewModel.CondicionTributaria.Condicion)
                     <br />
                 }
                 else
                 {
                     @Html.Label("Condicion Tributaria: ")
-                    @Html.Raw(LaTienda.Enums.CondicionTributaria.CF + "")
+                    @Html.Raw(LaTienda.Enums.CondicionTributariaEnum.CF + "")
                     <br />
                 }
             </div>

@@ -7,11 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LaTienda;
-using LaTienda.Models.Auth;
 
 namespace LaTienda.Controllers
 {
-    [CustomAuthorize(Roles = "Administrativo")]
     public class UsuarioSetsController : Controller
     {
         private LaTiendaEntities db = new LaTiendaEntities();
@@ -19,7 +17,7 @@ namespace LaTienda.Controllers
         // GET: UsuarioSets
         public ActionResult Index()
         {
-            var usuarioSet = db.UsuarioSet.Include(u => u.SucursalSet);
+            var usuarioSet = db.UsuarioSet;
             return View(usuarioSet.ToList());
         }
 
@@ -41,7 +39,6 @@ namespace LaTienda.Controllers
         // GET: UsuarioSets/Create
         public ActionResult Create()
         {
-            ViewBag.Sucursal_Id = new SelectList(db.SucursalSet, "Id", "Descripcion");
             return View();
         }
 
@@ -50,7 +47,7 @@ namespace LaTienda.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Legajo,UsuarioNick,Password,RolUsuario1,Sucursal_Id")] UsuarioSet usuarioSet)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Legajo,UsuarioNick,Password,RolUsuario1")] UsuarioSet usuarioSet)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +56,7 @@ namespace LaTienda.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Sucursal_Id = new SelectList(db.SucursalSet, "Id", "Descripcion", usuarioSet.Sucursal_Id);
+            
             return View(usuarioSet);
         }
 
@@ -75,7 +72,7 @@ namespace LaTienda.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Sucursal_Id = new SelectList(db.SucursalSet, "Id", "Descripcion", usuarioSet.Sucursal_Id);
+            
             return View(usuarioSet);
         }
 
@@ -84,7 +81,7 @@ namespace LaTienda.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Legajo,UsuarioNick,Password,RolUsuario1,Sucursal_Id")] UsuarioSet usuarioSet)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Legajo,UsuarioNick,Password,RolUsuario1")] UsuarioSet usuarioSet)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +89,7 @@ namespace LaTienda.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Sucursal_Id = new SelectList(db.SucursalSet, "Id", "Descripcion", usuarioSet.Sucursal_Id);
+            
             return View(usuarioSet);
         }
 

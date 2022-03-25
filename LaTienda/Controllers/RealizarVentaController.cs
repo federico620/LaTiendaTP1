@@ -10,6 +10,7 @@ using System.Net;
 using LaTienda.Models;
 using LaTienda.Models.Auth;
 
+
 namespace LaTienda.Controllers
 {
     [CustomAuthorize(Roles = "Vendedor")]
@@ -21,7 +22,7 @@ namespace LaTienda.Controllers
         public ViewResult Index()
         {
             var venta = new VentaFromViewModel();
-            var v = new VentaSet() { Fecha = DateTime.Now};
+            var v = new VentaSet() {Total = 0, CAE = "", Fecha = DateTime.Now , FechaVen = DateTime.Now, Concepto = Enums.Concepto.Producto, PuntoDeVentaSet_Id = 1};
             db.VentaSet.Add(v);
             db.SaveChanges();
             venta.Id = v.Id;
@@ -108,14 +109,14 @@ namespace LaTienda.Controllers
         {
             VentaSet v = BuscarVenta(venta_id);
 
-            var cliente = db.ClienteSet.FirstOrDefault(x => x.Documento.ToString().Equals(searchCliente));
+            var cliente = db.ClienteSet.Include(x => x.CondicionTributaria).FirstOrDefault(x => x.Documento.ToString().Equals(searchCliente));
             if (cliente != null)
             {
                 v.ClienteSet = cliente;
                 v.Cliente_Id = cliente.Id;
             }
             var venta = VentaFromViewModel.FromModel(v);
-            venta.ClienteViewModel = ClienteViewModel.FromModel(v.ClienteSet);
+           // venta.ClienteViewModel = ClienteViewModel.FromModel(v.ClienteSet);
             return View("Index", venta);
         }
 
@@ -136,26 +137,29 @@ namespace LaTienda.Controllers
             }
             else
             {
-                cliente = new ClienteSet();
-                cliente.CondicionTributaria = Enums.CondicionTributaria.CF;
-                cliente.TipoDocumento = Enums.TipoDocumento.OTRO;
-                cliente.Domicilio = "";
-                cliente.Documento = 0;
-                cliente.Nombre = "";
+                var cd = db.CondicionTributariaSet.FirstOrDefault(x => x.Condicion == Enums.CondicionTributariaEnum.CF);
+                cliente = new ClienteSet
+                {
+                    CondicionTributaria = cd,
+                    TipoDocumento = Enums.TipoDocumento.OTRO,
+                    Domicilio = "",
+                    Documento = 0,
+                    Nombre = ""
+                };
                 v.ClienteSet = cliente;
                 v.Cliente_Id = cliente.Id;
                 db.SaveChanges();
             }
             var venta = VentaFromViewModel.FromModel(v);
 
-            venta.ClienteViewModel = ClienteViewModel.FromModel(cliente);
+            //venta.ClienteViewModel = ClienteViewModel.FromModel(cliente);
             return View("Index", venta);
 
         }
 
         private VentaSet BuscarVenta(int venta_id)
         {
-            var v = db.VentaSet.Include(x => x.LineaDeVentaSet).Include(x => x.ClienteSet).FirstOrDefault(x => x.Id.Equals(venta_id));
+            var v = db.VentaSet.Include(x => x.LineaDeVentaSet).Include(x => x.ClienteSet).Include(x => x.Comprobante).FirstOrDefault(x => x.Id.Equals(venta_id));
 
             foreach (var lv in v.LineaDeVentaSet)
             {
@@ -172,8 +176,8 @@ namespace LaTienda.Controllers
             var venta = VentaFromViewModel.FromModel(v);
             if (v.Cliente_Id != null && v.LineaDeVentaSet != null)
             {
-                v.InicializarComprobante();
-                if (v.ComprobanteSet != null)
+                v.Comprobante = v.ClienteSet.CondicionTributaria.ObtenerComprobante(Enums.Operacion.Venta);
+                if (v.Comprobante != null && ((v.Total >= 10000 && v.ClienteSet.Documento != 0) || (v.Total < 10000 && v.ClienteSet.Documento == 0) || v.Total > 0))
                 {
                     var resultado = ClienteAFIP.AutorizarVenta(v);
 
@@ -187,9 +191,6 @@ namespace LaTienda.Controllers
                     else
                     {
                         //eliminar venta
-                        v.ComprobanteSet.FechaVen = DateTime.Now;
-                        v.ComprobanteSet = null;
-                        v.Comprobante_Id = null;
                         var lvs = v.LineaDeVentaSet.ToList();
                         foreach (var lv in lvs)
                         {

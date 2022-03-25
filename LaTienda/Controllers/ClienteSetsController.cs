@@ -7,35 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LaTienda;
-using LaTienda.Models.Auth;
 
 namespace LaTienda.Controllers
 {
-    [CustomAuthorize(Roles = "Vendedor")]
     public class ClienteSetsController : Controller
     {
         private LaTiendaEntities db = new LaTiendaEntities();
 
         // GET: ClienteSets
-        //public ActionResult Index()
-        //{
-        //    return View(db.ClienteSet.ToList());
-        //}
-
-        public ViewResult Index(string searchString)
+        public ActionResult Index()
         {
-
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                var clientes = db.ClienteSet.Where(s => s.Documento.ToString().Contains(searchString));
-                return View(clientes.ToList());
-            }
-            else
-            {
-                return View(db.ClienteSet.ToList());
-            }
+            var clienteSet = db.ClienteSet.Include(c => c.CondicionTributaria);
+            return View(clienteSet.ToList());
         }
+
         // GET: ClienteSets/Details/5
         public ActionResult Details(int? id)
         {
@@ -54,6 +39,7 @@ namespace LaTienda.Controllers
         // GET: ClienteSets/Create
         public ActionResult Create()
         {
+            ViewBag.CondicionTributariaId = new SelectList(db.CondicionTributariaSet, "Id", "Id");
             return View();
         }
 
@@ -62,7 +48,7 @@ namespace LaTienda.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Documento,Domicilio,CondicionTributaria,TipoDocumento")] ClienteSet clienteSet)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Documento,Domicilio,TipoDocumento,CondicionTributariaId")] ClienteSet clienteSet)
         {
             if (ModelState.IsValid)
             {
@@ -71,6 +57,7 @@ namespace LaTienda.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CondicionTributariaId = new SelectList(db.CondicionTributariaSet, "Id", "Id", clienteSet.CondicionTributariaId);
             return View(clienteSet);
         }
 
@@ -86,6 +73,7 @@ namespace LaTienda.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CondicionTributariaId = new SelectList(db.CondicionTributariaSet, "Id", "Id", clienteSet.CondicionTributariaId);
             return View(clienteSet);
         }
 
@@ -94,7 +82,7 @@ namespace LaTienda.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Documento,Domicilio,CondicionTributaria,TipoDocumento")] ClienteSet clienteSet)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Documento,Domicilio,TipoDocumento,CondicionTributariaId")] ClienteSet clienteSet)
         {
             if (ModelState.IsValid)
             {
@@ -102,6 +90,7 @@ namespace LaTienda.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CondicionTributariaId = new SelectList(db.CondicionTributariaSet, "Id", "Id", clienteSet.CondicionTributariaId);
             return View(clienteSet);
         }
 

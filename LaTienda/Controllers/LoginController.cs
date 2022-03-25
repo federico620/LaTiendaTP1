@@ -71,29 +71,6 @@ namespace LaTienda.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Login", null);
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Login(UsuarioSet objUser)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        LaTiendaEntities db = new LaTiendaEntities();
-        //        {
-        //            var obj = db.UsuarioSet.Where(a => a.UsuarioNick.Equals(objUser.UsuarioNick) && a.Password.Equals(objUser.Password)).FirstOrDefault();
-        //            if (obj != null)
-        //            {
-        //                Session["UserID"] = obj.Id.ToString();
-        //                Session["UserName"] = obj.Nombre.ToString();
-        //                obj.PuntoDeVenta = objUser.PuntoDeVenta;
-
-        //                return RedirectToAction("UserDashBoard");
-        //            }
-        //        }
-        //    }
-        //    return View(objUser);
-        //}
-
         public ActionResult UserDashBoard()
         {
             if (Session["UserID"] != null)

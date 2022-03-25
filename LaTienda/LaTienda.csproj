@@ -135,7 +135,10 @@
     <Compile Include="ColorSet.cs">
       <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ComprobanteSet.cs">
+    <Compile Include="Comprobante.cs">
+      <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CondicionTributaria.cs">
       <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\ServiceReferenceAFIP\Reference.cs">
@@ -151,7 +154,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClienteSetsController.cs" />
     <Compile Include="Controllers\ColorSetsController.cs" />
-    <Compile Include="Controllers\ComprobanteSetsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LineaDeVentaSetsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="Controllers\VentaSetsController.cs" />
     <Compile Include="Enums\Concepto.cs" />
     <Compile Include="Enums\CondicionTributaria.cs" />
+    <Compile Include="Enums\Operacion.cs" />
     <Compile Include="Enums\RolEnum.cs" />
     <Compile Include="Enums\TipoComprobante.cs" />
     <Compile Include="Enums\TipoDocumento.cs" />
@@ -198,6 +201,7 @@
     <Compile Include="Models\ClienteAFIP.cs" />
     <Compile Include="Models\ClienteViewModel.cs" />
     <Compile Include="Models\ColorViewModel.cs" />
+    <Compile Include="Models\CondicionTributaria.cs" />
     <Compile Include="Models\LineaDeVentaViewModel.cs" />
     <Compile Include="Models\Auth\CustomMembership.cs" />
     <Compile Include="Models\Auth\CustomMemberShipUser.cs" />
@@ -437,11 +441,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\ClienteSets\Create.cshtml" />
-    <Content Include="Views\ClienteSets\Delete.cshtml" />
-    <Content Include="Views\ClienteSets\Details.cshtml" />
-    <Content Include="Views\ClienteSets\Edit.cshtml" />
-    <Content Include="Views\ClienteSets\Index.cshtml" />
     <Content Include="Views\ColorSets\Create.cshtml" />
     <Content Include="Views\ColorSets\Delete.cshtml" />
     <Content Include="Views\ColorSets\Details.cshtml" />
@@ -489,11 +488,6 @@
     <Content Include="Views\TalleSets\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\UserDashBoard.cshtml" />
-    <Content Include="Views\UsuarioSets\Create.cshtml" />
-    <Content Include="Views\UsuarioSets\Delete.cshtml" />
-    <Content Include="Views\UsuarioSets\Details.cshtml" />
-    <Content Include="Views\UsuarioSets\Edit.cshtml" />
-    <Content Include="Views\UsuarioSets\Index.cshtml" />
     <Content Include="Views\VentaSets\Create.cshtml" />
     <Content Include="Views\VentaSets\Delete.cshtml" />
     <Content Include="Views\VentaSets\Details.cshtml" />
@@ -502,11 +496,16 @@
     <Content Include="Views\RealizarVenta\Index.cshtml" />
     <Content Include="Views\RealizarVenta\FinalizarVenta.cshtml" />
     <Content Include="Views\RealizarVenta\VentaFallida.cshtml" />
-    <Content Include="Views\ComprobanteSets\Create.cshtml" />
-    <Content Include="Views\ComprobanteSets\Delete.cshtml" />
-    <Content Include="Views\ComprobanteSets\Details.cshtml" />
-    <Content Include="Views\ComprobanteSets\Edit.cshtml" />
-    <Content Include="Views\ComprobanteSets\Index.cshtml" />
+    <Content Include="Views\UsuarioSets\Create.cshtml" />
+    <Content Include="Views\UsuarioSets\Delete.cshtml" />
+    <Content Include="Views\UsuarioSets\Details.cshtml" />
+    <Content Include="Views\UsuarioSets\Edit.cshtml" />
+    <Content Include="Views\UsuarioSets\Index.cshtml" />
+    <Content Include="Views\ClienteSets\Create.cshtml" />
+    <Content Include="Views\ClienteSets\Delete.cshtml" />
+    <Content Include="Views\ClienteSets\Details.cshtml" />
+    <Content Include="Views\ClienteSets\Edit.cshtml" />
+    <Content Include="Views\ClienteSets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
