@@ -19,7 +19,6 @@ namespace LaTienda
         {
             this.PuntoDeVentaSet = new HashSet<PuntoDeVentaSet>();
             this.StockSet = new HashSet<StockSet>();
-            this.UsuarioSet = new HashSet<UsuarioSet>();
         }
     
         public int Id { get; set; }
@@ -33,7 +32,5 @@ namespace LaTienda
         public virtual ICollection<PuntoDeVentaSet> PuntoDeVentaSet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StockSet> StockSet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UsuarioSet> UsuarioSet { get; set; }
     }
 }

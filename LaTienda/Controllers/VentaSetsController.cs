@@ -19,7 +19,7 @@ namespace LaTienda.Controllers
         // GET: VentaSets
         public ActionResult Index()
         {
-            var ventaSet = db.VentaSet.Include(v => v.ClienteSet).Include(v => v.ComprobanteSet).Include(v => v.UsuarioSet);
+            var ventaSet = db.VentaSet.Include(v => v.ClienteSet).Include(v => v.UsuarioSet);
             return View(ventaSet.ToList());
         }
 
@@ -81,7 +81,6 @@ namespace LaTienda.Controllers
                 return HttpNotFound();
             }
             ViewBag.Cliente_Id = new SelectList(db.ClienteSet, "Id", "Nombre", ventaSet.Cliente_Id);
-            ViewBag.Comprobante_Id = new SelectList(db.ComprobanteSet, "Id", "CAE", ventaSet.Comprobante_Id);
             ViewBag.Usuario_Id = new SelectList(db.UsuarioSet, "Id", "Nombre", ventaSet.Usuario_Id);
             return View(ventaSet);
         }
@@ -100,7 +99,6 @@ namespace LaTienda.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Cliente_Id = new SelectList(db.ClienteSet, "Id", "Nombre", ventaSet.Cliente_Id);
-            ViewBag.Comprobante_Id = new SelectList(db.ComprobanteSet, "Id", "CAE", ventaSet.Comprobante_Id);
             ViewBag.Usuario_Id = new SelectList(db.UsuarioSet, "Id", "Nombre", ventaSet.Usuario_Id);
             return View(ventaSet);
         }
@@ -125,11 +123,8 @@ namespace LaTienda.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            VentaSet ventaSet = db.VentaSet.Include(x => x.LineaDeVentaSet).Include(x => x.ClienteSet).Include(x => x.ComprobanteSet).FirstOrDefault(x => x.Id.Equals(id));
-            if (ventaSet.ComprobanteSet != null)
-            {
-                db.ComprobanteSet.Remove(ventaSet.ComprobanteSet);
-            }
+            VentaSet ventaSet = db.VentaSet.Include(x => x.LineaDeVentaSet).Include(x => x.ClienteSet).FirstOrDefault(x => x.Id.Equals(id));
+            
             var lvs = ventaSet.LineaDeVentaSet.ToList();
             foreach (var lv in lvs)
             {

@@ -14,10 +14,18 @@ namespace LaTienda
     
     public partial class PuntoDeVentaSet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PuntoDeVentaSet()
+        {
+            this.VentaSet = new HashSet<VentaSet>();
+        }
+    
         public int Id { get; set; }
         public int Codigo { get; set; }
         public int Sucursal_Id { get; set; }
     
         public virtual SucursalSet SucursalSet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VentaSet> VentaSet { get; set; }
     }
 }

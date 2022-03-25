@@ -17,7 +17,7 @@ namespace LaTienda.Models
                 var con = new ServiceReferenceAFIP.ServiceSoapClient();
                 var fecabreq = new ServiceReferenceAFIP.FECAECabRequest
                 {
-                    CbteTipo = (int)venta.ComprobanteSet.TipoComprobante,
+                    CbteTipo = (int)venta.Comprobante.TipoComprobante,
                     CantReg = 1,
                     PtoVta = 1,
                 };
@@ -29,7 +29,7 @@ namespace LaTienda.Models
                     Token = wrapper.Token,
                 };
 
-                var ultAut = con.FECompUltimoAutorizado(authReq, 1, (int)venta.ComprobanteSet.TipoComprobante);
+                var ultAut = con.FECompUltimoAutorizado(authReq, 1, (int)venta.Comprobante.TipoComprobante);
                 var numNuevoComp = ultAut.CbteNro + 1;
                 var alicIvas = venta.LineaDeVentaSet.Select(x => new ServiceReferenceAFIP.AlicIva
                 {
@@ -41,12 +41,12 @@ namespace LaTienda.Models
 
                 var fedetreq = new ServiceReferenceAFIP.FECAEDetRequest
                 {
-                    Concepto = (int)venta.ComprobanteSet.Concepto,
+                    Concepto = (int)venta.Concepto,
                     DocTipo = (int)venta.ClienteSet.TipoDocumento,
                     DocNro = (long)venta.ClienteSet.Documento,
                     CbteDesde = numNuevoComp,
                     CbteHasta = numNuevoComp,
-                    CbteFch = venta.ComprobanteSet.Fecha.ToString("yyyyMMdd"),
+                    CbteFch = venta.Fecha.ToString("yyyyMMdd"),
                     ImpTotal = venta.Total,
                     ImpTotConc = 0,
                     ImpNeto = venta.CalcularNetoGravado(),
@@ -68,12 +68,12 @@ namespace LaTienda.Models
 
                 var comp = con.FECAESolicitar(authReq, fecaeReq);
 
-                venta.ComprobanteSet.CAE = comp.FeDetResp.First().CAE;
+                venta.CAE = comp.FeDetResp.First().CAE;
                 var fechaVenCAE = comp.FeDetResp.First().CAEFchVto;
                 string format = "yyyyMMdd";
 
                 if (fechaVenCAE != "")
-                    venta.ComprobanteSet.FechaVen = DateTime.ParseExact(fechaVenCAE, format, CultureInfo.InvariantCulture);
+                    venta.FechaVen = DateTime.ParseExact(fechaVenCAE, format, CultureInfo.InvariantCulture);
 
                 return comp.FeCabResp.Resultado;
             

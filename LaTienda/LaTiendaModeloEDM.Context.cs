@@ -27,7 +27,6 @@ namespace LaTienda
     
         public virtual DbSet<ClienteSet> ClienteSet { get; set; }
         public virtual DbSet<ColorSet> ColorSet { get; set; }
-        public virtual DbSet<ComprobanteSet> ComprobanteSet { get; set; }
         public virtual DbSet<LineaDeVentaSet> LineaDeVentaSet { get; set; }
         public virtual DbSet<MarcaSet> MarcaSet { get; set; }
         public virtual DbSet<ProductoSet> ProductoSet { get; set; }
@@ -38,5 +37,7 @@ namespace LaTienda
         public virtual DbSet<TalleSet> TalleSet { get; set; }
         public virtual DbSet<UsuarioSet> UsuarioSet { get; set; }
         public virtual DbSet<VentaSet> VentaSet { get; set; }
+        public virtual DbSet<Comprobante> ComprobanteSet { get; set; }
+        public virtual DbSet<CondicionTributaria> CondicionTributariaSet { get; set; }
     }
 }

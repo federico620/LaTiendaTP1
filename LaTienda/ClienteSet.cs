@@ -24,10 +24,11 @@ namespace LaTienda
         public string Nombre { get; set; }
         public Nullable<long> Documento { get; set; }
         public string Domicilio { get; set; }
-        public LaTienda.Enums.CondicionTributaria CondicionTributaria { get; set; }
         public LaTienda.Enums.TipoDocumento TipoDocumento { get; set; }
+        public int CondicionTributariaId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VentaSet> VentaSet { get; set; }
+        public virtual CondicionTributaria CondicionTributaria { get; set; }
     }
 }
