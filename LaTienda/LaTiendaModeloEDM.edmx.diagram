@@ -35,6 +35,8 @@
         <AssociationConnector Association="LaTiendaModeloEDM.VentaSetComprobante" />
         <AssociationConnector Association="LaTiendaModeloEDM.ComprobanteVentaSet" />
         <AssociationConnector Association="LaTiendaModeloEDM.CondicionTributariaClienteSet" />
+        <EntityTypeShape EntityType="LaTiendaModeloEDM.TipoComprobante" Width="1.5" PointX="2" PointY="18" />
+        <AssociationConnector Association="LaTiendaModeloEDM.TipoComprobanteComprobante" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

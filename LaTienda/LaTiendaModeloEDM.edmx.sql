@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/24/2022 21:13:06
+-- Date Created: 03/28/2022 07:47:11
 -- Generated from EDMX file: C:\Users\Trassani\source\repos\LaTienda\LaTienda\LaTiendaModeloEDM.edmx
 -- --------------------------------------------------
 
@@ -23,11 +23,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ColorStock]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[StockSet] DROP CONSTRAINT [FK_ColorStock];
 GO
-IF OBJECT_ID(N'[dbo].[FK_StockSetLineaDeVenta]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LineaDeVentaSet] DROP CONSTRAINT [FK_StockSetLineaDeVenta];
+IF OBJECT_ID(N'[dbo].[FK_ComprobanteTipoComprobante]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ComprobanteSet] DROP CONSTRAINT [FK_ComprobanteTipoComprobante];
 GO
-IF OBJECT_ID(N'[dbo].[FK_VentaLineaDeVenta]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LineaDeVentaSet] DROP CONSTRAINT [FK_VentaLineaDeVenta];
+IF OBJECT_ID(N'[dbo].[FK_ComprobanteVentaSet]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[VentaSet] DROP CONSTRAINT [FK_ComprobanteVentaSet];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CondicionTributariaClienteSet]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ClienteSet] DROP CONSTRAINT [FK_CondicionTributariaClienteSet];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CondicionTributariaComprobante]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ComprobanteSet] DROP CONSTRAINT [FK_CondicionTributariaComprobante];
 GO
 IF OBJECT_ID(N'[dbo].[FK_MarcaProducto]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ProductoSet] DROP CONSTRAINT [FK_MarcaProducto];
@@ -35,8 +41,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ProductoStock]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[StockSet] DROP CONSTRAINT [FK_ProductoStock];
 GO
+IF OBJECT_ID(N'[dbo].[FK_PuntoDeVentaSetVentaSet]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[VentaSet] DROP CONSTRAINT [FK_PuntoDeVentaSetVentaSet];
+GO
 IF OBJECT_ID(N'[dbo].[FK_RubroProducto]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ProductoSet] DROP CONSTRAINT [FK_RubroProducto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StockSetLineaDeVenta]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineaDeVentaSet] DROP CONSTRAINT [FK_StockSetLineaDeVenta];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SucursalPuntoDeVenta]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PuntoDeVentaSet] DROP CONSTRAINT [FK_SucursalPuntoDeVenta];
@@ -50,17 +62,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UsuarioVenta]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[VentaSet] DROP CONSTRAINT [FK_UsuarioVenta];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PuntoDeVentaSetVentaSet]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[VentaSet] DROP CONSTRAINT [FK_PuntoDeVentaSetVentaSet];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CondicionTributariaComprobante]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ComprobanteSet] DROP CONSTRAINT [FK_CondicionTributariaComprobante];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ComprobanteVentaSet]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[VentaSet] DROP CONSTRAINT [FK_ComprobanteVentaSet];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CondicionTributariaClienteSet]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ClienteSet] DROP CONSTRAINT [FK_CondicionTributariaClienteSet];
+IF OBJECT_ID(N'[dbo].[FK_VentaLineaDeVenta]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineaDeVentaSet] DROP CONSTRAINT [FK_VentaLineaDeVenta];
 GO
 
 -- --------------------------------------------------
@@ -72,6 +75,12 @@ IF OBJECT_ID(N'[dbo].[ClienteSet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[ColorSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ColorSet];
+GO
+IF OBJECT_ID(N'[dbo].[ComprobanteSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ComprobanteSet];
+GO
+IF OBJECT_ID(N'[dbo].[CondicionTributariaSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CondicionTributariaSet];
 GO
 IF OBJECT_ID(N'[dbo].[LineaDeVentaSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[LineaDeVentaSet];
@@ -97,17 +106,14 @@ GO
 IF OBJECT_ID(N'[dbo].[TalleSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[TalleSet];
 GO
+IF OBJECT_ID(N'[dbo].[TipoComprobanteSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TipoComprobanteSet];
+GO
 IF OBJECT_ID(N'[dbo].[UsuarioSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UsuarioSet];
 GO
 IF OBJECT_ID(N'[dbo].[VentaSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[VentaSet];
-GO
-IF OBJECT_ID(N'[dbo].[ComprobanteSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ComprobanteSet];
-GO
-IF OBJECT_ID(N'[dbo].[CondicionTributariaSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CondicionTributariaSet];
 GO
 
 -- --------------------------------------------------
@@ -242,8 +248,8 @@ GO
 -- Creating table 'ComprobanteSet'
 CREATE TABLE [dbo].[ComprobanteSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [TipoComprobante] int  NOT NULL,
     [Operacion] int  NOT NULL,
+    [TipoComprobanteId] int  NOT NULL,
     [CondicionTributaria_Id] int  NOT NULL
 );
 GO
@@ -252,6 +258,15 @@ GO
 CREATE TABLE [dbo].[CondicionTributariaSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Condicion] int  NOT NULL
+);
+GO
+
+-- Creating table 'TipoComprobanteSet'
+CREATE TABLE [dbo].[TipoComprobanteSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Descripcion] nvarchar(max)  NOT NULL,
+    [Letra] nvarchar(max)  NOT NULL,
+    [Codigo] int  NOT NULL
 );
 GO
 
@@ -340,6 +355,12 @@ GO
 -- Creating primary key on [Id] in table 'CondicionTributariaSet'
 ALTER TABLE [dbo].[CondicionTributariaSet]
 ADD CONSTRAINT [PK_CondicionTributariaSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'TipoComprobanteSet'
+ALTER TABLE [dbo].[TipoComprobanteSet]
+ADD CONSTRAINT [PK_TipoComprobanteSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -570,6 +591,21 @@ GO
 CREATE INDEX [IX_FK_CondicionTributariaClienteSet]
 ON [dbo].[ClienteSet]
     ([CondicionTributariaId]);
+GO
+
+-- Creating foreign key on [TipoComprobanteId] in table 'ComprobanteSet'
+ALTER TABLE [dbo].[ComprobanteSet]
+ADD CONSTRAINT [FK_TipoComprobanteComprobante]
+    FOREIGN KEY ([TipoComprobanteId])
+    REFERENCES [dbo].[TipoComprobanteSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TipoComprobanteComprobante'
+CREATE INDEX [IX_FK_TipoComprobanteComprobante]
+ON [dbo].[ComprobanteSet]
+    ([TipoComprobanteId]);
 GO
 
 -- --------------------------------------------------

@@ -17,7 +17,7 @@ namespace LaTienda.Models
                 var con = new ServiceReferenceAFIP.ServiceSoapClient();
                 var fecabreq = new ServiceReferenceAFIP.FECAECabRequest
                 {
-                    CbteTipo = (int)venta.Comprobante.TipoComprobante,
+                    CbteTipo = venta.Comprobante.TipoComprobante.Codigo,
                     CantReg = 1,
                     PtoVta = 1,
                 };
@@ -29,15 +29,9 @@ namespace LaTienda.Models
                     Token = wrapper.Token,
                 };
 
-                var ultAut = con.FECompUltimoAutorizado(authReq, 1, (int)venta.Comprobante.TipoComprobante);
+                var ultAut = con.FECompUltimoAutorizado(authReq, 1, venta.Comprobante.TipoComprobante.Codigo);
                 var numNuevoComp = ultAut.CbteNro + 1;
-                var alicIvas = venta.LineaDeVentaSet.Select(x => new ServiceReferenceAFIP.AlicIva
-                {
-                    Id = 5,
-                    BaseImp = x.StockSet.ProductoSet.NetoGravado * x.Cantidad,
-                    Importe = x.StockSet.ProductoSet.Iva * x.Cantidad,
-                }).ToArray();
-
+                var alicIvas = venta.CalcularIvas();
 
                 var fedetreq = new ServiceReferenceAFIP.FECAEDetRequest
                 {

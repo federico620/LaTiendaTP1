@@ -12,21 +12,20 @@ namespace LaTienda
     using System;
     using System.Collections.Generic;
     
-    public partial class Comprobante
+    public partial class TipoComprobante
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Comprobante()
+        public TipoComprobante()
         {
-            this.VentaSet = new HashSet<VentaSet>();
+            this.Comprobante = new HashSet<Comprobante>();
         }
     
         public int Id { get; set; }
-        public LaTienda.Enums.Operacion Operacion { get; set; }
-        public int TipoComprobanteId { get; set; }
+        public string Descripcion { get; set; }
+        public string Letra { get; set; }
+        public int Codigo { get; set; }
     
-        public virtual CondicionTributaria CondicionTributaria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VentaSet> VentaSet { get; set; }
-        public virtual TipoComprobante TipoComprobante { get; set; }
+        public virtual ICollection<Comprobante> Comprobante { get; set; }
     }
 }

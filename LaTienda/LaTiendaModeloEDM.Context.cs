@@ -39,5 +39,6 @@ namespace LaTienda
         public virtual DbSet<VentaSet> VentaSet { get; set; }
         public virtual DbSet<Comprobante> ComprobanteSet { get; set; }
         public virtual DbSet<CondicionTributaria> CondicionTributariaSet { get; set; }
+        public virtual DbSet<TipoComprobante> TipoComprobanteSet { get; set; }
     }
 }

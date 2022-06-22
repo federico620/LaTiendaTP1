@@ -36,33 +36,10 @@ namespace LaTienda
             return total;
         }
 
-        //public void InicializarComprobante()
-        //{
-        //    if (Total > 10000 && ClienteSet.CondicionTributaria.Equals(Enums.CondicionTributaria.CF))
-        //    {
-        //        this.TipoComprobante =  Enums.TipoComprobante.FacturaB;
-        //    }
-        //    else if (Total < 10000 && ClienteSet.Documento == 0)
-        //    {
-        //        this.TipoComprobante = Enums.TipoComprobante.FacturaB;
-        //    }
-        //    else if (ClienteSet.CondicionTributaria == Enums.CondicionTributaria.RI)
-        //    {
-        //        this.TipoComprobante = Enums.TipoComprobante.FacturaA;
-        //    }
-        //    else if (ClienteSet.CondicionTributaria == Enums.CondicionTributaria.M)
-        //    {
-        //        this.TipoComprobante = Enums.TipoComprobante.FacturaA;
-        //    }
-        //    else if (ClienteSet.CondicionTributaria == Enums.CondicionTributaria.E)
-        //    {
-        //        this.TipoComprobante = Enums.TipoComprobante.FacturaB;
-        //    }
-        //    else if (ClienteSet.CondicionTributaria == Enums.CondicionTributaria.NR)
-        //    {
-        //        this.TipoComprobante = Enums.TipoComprobante.FacturaB;
-        //    }
-        //}
+       public bool HabilitadoParaVender()
+        {
+            return Comprobante != null && (this.Total >= 10000 && this.ClienteSet.Documento != 0) || (this.Total < 10000 && this.ClienteSet.Documento == 0) || Total > 0;
+        }
 
         public void ActualizarStock()
         {
@@ -70,6 +47,28 @@ namespace LaTienda
             {
                 lv.StockSet.ActualizarStock(lv.Cantidad);
             }
+        }
+
+        public ServiceReferenceAFIP.AlicIva[] CalcularIvas()
+        {
+            double baseImp = 0;
+            double importe = 0;
+            foreach (var lv in LineaDeVentaSet)
+            {
+                baseImp += lv.StockSet.ProductoSet.NetoGravado * lv.Cantidad;
+                importe += lv.StockSet.ProductoSet.Iva * lv.Cantidad;
+            }
+
+            ServiceReferenceAFIP.AlicIva[] alicIvas = new ServiceReferenceAFIP.AlicIva[]
+            {
+                new ServiceReferenceAFIP.AlicIva
+                {
+                Id = 5,
+                BaseImp = baseImp,
+                Importe = importe
+                }
+            };
+            return alicIvas;
         }
     }
 }

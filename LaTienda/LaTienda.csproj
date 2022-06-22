@@ -236,6 +236,9 @@
     <Compile Include="TalleSet.cs">
       <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="TipoComprobante.cs">
+      <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="UsuarioSet.cs">
       <DependentUpon>LaTiendaModeloEDM.tt</DependentUpon>
     </Compile>

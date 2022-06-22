@@ -116,7 +116,6 @@ namespace LaTienda.Controllers
                 v.Cliente_Id = cliente.Id;
             }
             var venta = VentaFromViewModel.FromModel(v);
-           // venta.ClienteViewModel = ClienteViewModel.FromModel(v.ClienteSet);
             return View("Index", venta);
         }
 
@@ -127,7 +126,7 @@ namespace LaTienda.Controllers
             ClienteSet cliente;
             if (cliente_id != null)
             {
-                cliente = db.ClienteSet.FirstOrDefault(x => x.Id.Equals(cliente_id.Value));
+                cliente = db.ClienteSet.Include(x => x.CondicionTributaria).FirstOrDefault(x => x.Id.Equals(cliente_id.Value));
                 if (cliente != null)
                 {
                     v.ClienteSet = cliente;
@@ -137,22 +136,13 @@ namespace LaTienda.Controllers
             }
             else
             {
-                var cd = db.CondicionTributariaSet.FirstOrDefault(x => x.Condicion == Enums.CondicionTributariaEnum.CF);
-                cliente = new ClienteSet
-                {
-                    CondicionTributaria = cd,
-                    TipoDocumento = Enums.TipoDocumento.OTRO,
-                    Domicilio = "",
-                    Documento = 0,
-                    Nombre = ""
-                };
+                //var cd = db.CondicionTributariaSet.FirstOrDefault(x => x.Condicion == Enums.CondicionTributariaEnum.CF);
+                cliente = db.ClienteSet.Include(x =>x.CondicionTributaria).FirstOrDefault(x => x.Documento == 0);
                 v.ClienteSet = cliente;
                 v.Cliente_Id = cliente.Id;
                 db.SaveChanges();
             }
             var venta = VentaFromViewModel.FromModel(v);
-
-            //venta.ClienteViewModel = ClienteViewModel.FromModel(cliente);
             return View("Index", venta);
 
         }
@@ -177,10 +167,9 @@ namespace LaTienda.Controllers
             if (v.Cliente_Id != null && v.LineaDeVentaSet != null)
             {
                 v.Comprobante = v.ClienteSet.CondicionTributaria.ObtenerComprobante(Enums.Operacion.Venta);
-                if (v.Comprobante != null && ((v.Total >= 10000 && v.ClienteSet.Documento != 0) || (v.Total < 10000 && v.ClienteSet.Documento == 0) || v.Total > 0))
+                if (v.HabilitadoParaVender())
                 {
                     var resultado = ClienteAFIP.AutorizarVenta(v);
-
 
                     if (resultado.Equals("A"))
                     {
