@@ -249,6 +249,10 @@
   <ItemGroup>
     <None Include="Connected Services\ServiceReferenceAFIP\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReferenceAFIP\configuration.svcinfo" />
+    <Content Include="App_Data\LaTienda.mdf" />
+    <Content Include="App_Data\LaTienda_log.ldf">
+      <DependentUpon>LaTienda.mdf</DependentUpon>
+    </Content>
     <Content Include="Connected Services\ServiceReferenceAFIP\LaTienda.ServiceReferenceAFIP.CbteTipoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -511,7 +515,6 @@
     <Content Include="Views\ClienteSets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
